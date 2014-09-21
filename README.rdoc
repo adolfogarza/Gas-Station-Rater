@@ -1,0 +1,12 @@
+== README
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* This rating framework requires rails 4.1.6 and ruby 2.1.2p95.
+
+* You will require the gems specified inside the gemfile.
+
+* Simply download the framework, install the gems, do a rake db:create followed by a rake db:migrate and run the server with rails s.

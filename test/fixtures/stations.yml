@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  legal_name: MyString
+  address: MyString
+  latitude: 1.5
+  longitude: 1.5
+  counter_honesty: 1
+  counter_speed_service: 1
+  counter_customer_service: 1
+  counter_comments: 1
+
+two:
+  legal_name: MyString
+  address: MyString
+  latitude: 1.5
+  longitude: 1.5
+  counter_honesty: 1
+  counter_speed_service: 1
+  counter_customer_service: 1
+  counter_comments: 1

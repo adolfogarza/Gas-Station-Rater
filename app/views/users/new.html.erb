@@ -1,0 +1,47 @@
+
+
+
+<div class="panel panel-default mypanel center center-block">
+  <div class="panel-heading">
+    <h1>Abre una cuenta</h1>
+  </div>
+<div class="panel-body"> 
+<%= form_for @user do |f| %>
+
+  <% if @user.errors.any? %>
+    <div class="error_messages left">
+      
+      <ul>
+        <% for message in @user.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+   <p>
+    <%= f.label :Nombre %><br />
+    <%= f.text_field :name %>
+  </p>
+
+   <p>
+    <%= f.label :Apellido %><br />
+    <%= f.text_field :lastname %>
+  </p>
+
+  <p>
+    <%= f.label :Correo_electrónico %><br />
+    <%= f.text_field :email %>
+  </p>
+
+ 
+  <p>
+    <%= f.label :Contraseña %><br />
+    <%= f.password_field :password %>
+  </p>
+
+  <p class="button"><%= submit_tag "Registrar cuenta", class: "btn btn-primary" %></p>
+<% end %>
+   
+  </div>
+</div>

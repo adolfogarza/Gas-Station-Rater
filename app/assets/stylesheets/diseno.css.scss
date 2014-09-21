@@ -1,0 +1,43 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:600);
+
+$body-bg:                                                   #ecf0f1;
+$font-family-sans-serif:                'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$navbar-height:                                        45px;
+$navbar-default-bg:                          white;
+$navbar-default-brand-color:      #3c9cdc;
+$brand-primary:                                    #2ecc71;
+$jumbotron-bg:                                         white;
+
+@import 'bootstrap';
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+
+
+.center {
+     text-align: center;
+}
+
+.left{
+	text-align: left;
+}
+
+.navbar-brand {
+     font-weight: bold;
+}
+
+
+.mypanel {
+    width: 350px;
+    
+}
+
+
+body {
+    
+    background-image: url('http://www.blr.com/html_email/images/EDA/pumping_gas.jpg');
+    background-repeat: no-repeat;
+    background-color: #ecf0f1;
+    -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+} 

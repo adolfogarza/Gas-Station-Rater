@@ -1,6 +1,12 @@
 class SessionsController < ApplicationController
 
 def new
+  
+if current_user
+  redirect_to root_url, :notice => "Ya iniciaste sesion!"
+end
+
+
 end
 
 def create

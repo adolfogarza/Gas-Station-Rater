@@ -31,8 +31,9 @@ class CommentsController < ApplicationController
     if not Station.find(@comment.station_id).nil?
 
       respond_to do |format|
+        @station = Station.find_by_id(@comment.station_id)
         if @comment.save
-          format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+          format.html { redirect_to @station, notice: 'Tu comentario ha sido creado con exito!' }
           format.json { render :show, status: :created, location: @comment }
         else
           format.html { render :new }

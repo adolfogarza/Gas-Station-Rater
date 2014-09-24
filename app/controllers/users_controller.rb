@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
 	def new
+
 	  @user = User.new
+		if current_user
+	  		redirect_to root_url, :notice => "Ya registraste una cuenta!"
+		end
 	end
 
 	def create

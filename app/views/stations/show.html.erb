@@ -59,3 +59,33 @@ internal: {id: 'map'}}, function(){
 <%= link_to 'Back', comments_path %>
 </div>
 </div>
+
+
+<div class="panel panel-default center-block">
+ <div class="panel-body"> 
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Author</th>
+
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @station.comments.each do |station| %>
+      <tr>
+        <td><%= station.title %></td>
+        <td><%= station.description %></td>
+        <td><%= station.user.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>
+</div>

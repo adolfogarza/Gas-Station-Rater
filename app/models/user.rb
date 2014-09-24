@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   before_save :asign_priority #antes de guardar el usuario, se le asigna una prioridad de 0, para poder diferenciar entre usuarios administradores y usuarios normales.
   
   validates_presence_of :name
+  validates_presence_of :lastname
   validates_presence_of :password, :on => :create
   validates_presence_of :email
   validates_uniqueness_of :email

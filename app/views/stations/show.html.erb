@@ -60,7 +60,6 @@ internal: {id: 'map'}}, function(){
 </div>
 </div>
 
-
 <div class="panel panel-default center-block">
  <div class="panel-body"> 
 
@@ -70,7 +69,9 @@ internal: {id: 'map'}}, function(){
       <th>Title</th>
       <th>Description</th>
       <th>Author</th>
-
+      <th>Honesty</th>
+      <th>Speed of Service</th>
+      <th>Customer Service</th>
 
       <th colspan="3"></th>
     </tr>
@@ -82,6 +83,10 @@ internal: {id: 'map'}}, function(){
         <td><%= station.title %></td>
         <td><%= station.description %></td>
         <td><%= station.user.name %></td>
+        <td><%= station.rating.honesty %></td>
+        <td><%= station.rating.speed_service %></td>
+        <td><%= station.rating.customer_service %></td>
+
       </tr>
     <% end %>
   </tbody>

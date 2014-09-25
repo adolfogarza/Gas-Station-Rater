@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+  <%= f.hidden_field :station_id, value: @station.id %>
+
   <div class="field">
     <%= f.label :Titulo %><br>
     <%= f.text_field :title %>
@@ -20,7 +22,27 @@
     <%= f.text_area :description %>
   </div>
 
-  <%= f.hidden_field :station_id, value: @station.id %>
+  <% @comment.build_rating %>
+
+  <%= f.fields_for :rating do |jj| %>
+
+        <div class="field">
+          <%= jj.label :honesty %><br>
+          <%= jj.number_field :honesty %>
+        </div>
+        <div class="field">
+          <%= jj.label :speed_service %><br>
+          <%= jj.number_field :speed_service %>
+        </div>
+        <div class="field">
+          <%= jj.label :customer_service %><br>
+          <%= jj.number_field :customer_service %>
+        </div>
+
+
+  <%= f.hidden_field :comment_id, value: @comment.id %>
+
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>

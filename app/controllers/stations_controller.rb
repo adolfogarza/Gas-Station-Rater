@@ -12,6 +12,7 @@ class StationsController < ApplicationController
   # GET /stations/1.json
   def show
     @comment=Comment.new
+
    
    @coordinates = Gmaps4rails.build_markers(@station) do |station, marker| #metodo de la gema que traduce las coordenadas a codigo de jquery.
       marker.lat station.location.latitude

@@ -11,11 +11,13 @@ class CommentsController < ApplicationController
   # GET /comments/1
   # GET /comments/1.json
   def show
+
   end
 
   # GET /comments/new
   def new
-    @comment = current_user.comments.build
+  @comment = current_user.comments.build
+
   end
 
   # GET /comments/1/edit
@@ -47,10 +49,12 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
+    @current_comment_value = Rating.find_by_comment_id(@comment.id).id
     respond_to do |format|
       if @comment.update(comment_params)
         format.html { redirect_to @comment, notice: 'El comentario ha sido actualizado con exito!' }
         format.json { render :show, status: :ok, location: @comment }
+        Rating.find_by_comment_id(@current_comment_value).destroy
       else
         format.html { render :edit }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -62,6 +66,7 @@ class CommentsController < ApplicationController
   # DELETE /comments/1.json
   def destroy
     @comment.destroy
+    Rating.find_by_comment_id(@comment.id).destroy
     respond_to do |format|
       format.html { redirect_to comments_url, notice: 'El comentario ha sido borrado con exito' }
       format.json { head :no_content }
@@ -90,6 +95,6 @@ def correct_user
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:title, :description, :station_id)
+      params.require(:comment).permit(:title, :description, :station_id, rating_attributes:[:honesty, :speed_service, :customer_service])
     end
 end

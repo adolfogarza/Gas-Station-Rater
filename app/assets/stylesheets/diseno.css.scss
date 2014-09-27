@@ -30,14 +30,36 @@ $jumbotron-bg:                                         white;
     
 }
 
+.commentpanel {
+    width: 450px;
+    height: 200px;
+    
+}
+
 
 body {
     
-    background-image: url('http://www.blr.com/html_email/images/EDA/pumping_gas.jpg');
+    background-image: url("/assets/pumping_gas.jpg");
     background-repeat: no-repeat;
     background-color: #ecf0f1;
     -webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-} 
+}
+
+th {
+    
+    font-size: 85%;
+    padding: 10px;
+
+}
+
+td { 
+    padding: 10px;
+}
+
+hr { 
+
+    margin: 8px 0 8px 0;
+}

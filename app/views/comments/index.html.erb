@@ -20,6 +20,7 @@
         <% if comment.user == current_user || current_user.privileges == 1 %>
         <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
         <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
         <% end %>
       </tr>
     <% end %>
@@ -29,3 +30,4 @@
 <br>
 
 <%= link_to 'New Comment', new_comment_path %>
+<%= paginate @comments %>

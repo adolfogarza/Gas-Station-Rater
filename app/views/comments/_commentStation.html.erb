@@ -15,11 +15,11 @@
 
   <div class="field">
     <%= f.label :Titulo %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: "form-control"%>
   </div>
   <div class="field">
     <%= f.label :Descripcion %><br>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, class: "form-control"%>
   </div>
 
   <% @comment.build_rating %>
@@ -27,15 +27,15 @@
   <%= f.fields_for :rating do |jj| %>
 
         <div class="field">
-          <%= jj.label :honesty %><br>
+          <%= jj.label :Honestidad %><br>
           <%= jj.number_field :honesty %>
         </div>
         <div class="field">
-          <%= jj.label :speed_service %><br>
+          <%= jj.label :Velocidad_del_servicio %><br>
           <%= jj.number_field :speed_service %>
         </div>
         <div class="field">
-          <%= jj.label :customer_service %><br>
+          <%= jj.label :Atencion_al_cliente %><br>
           <%= jj.number_field :customer_service %>
         </div>
 
@@ -43,8 +43,8 @@
   <%= f.hidden_field :comment_id, value: @comment.id %>
 
   <% end %>
-
+<br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-primary"%>
   </div>
 <% end %>

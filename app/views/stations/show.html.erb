@@ -1,96 +1,162 @@
-<div class="panel panel-default center-block">
- <div class="panel-body"> 
+<link rel="stylesheet" type="text/css" href="app/assets/stylesheets/starRating.css">
 
-<p id="notice"><%= notice %></p>
+  <div class="panel panel-default center-block">
+   <div class="panel-body"> 
 
-<p>
-  <strong>Razon Social:</strong>
-  <%= @station.legal_name %>
-</p>
+            <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Direccion:</strong>
-  <%= @station.location.address %>
-</p>
+            <p>
+              <strong>Razon Social:</strong>
+              <%= @station.legal_name %>
+            </p>
 
-<p>
-  <strong>Latitud:</strong>
-  <%= @station.location.latitude %>
-</p>
+            <p>
+              <strong>Direccion:</strong>
+              <%= @station.location.address %>
+            </p>
 
-<p>
-  <strong>Longitud:</strong>
-  <%= @station.location.longitude %>
-</p>
+            <p>
+              <strong>Latitud:</strong>
+              <%= @station.location.latitude %>
+            </p>
 
+            <p>
+              <strong>Longitud:</strong>
+              <%= @station.location.longitude %>
+            </p>
 
-
-<%= link_to 'Edit', edit_station_path(@station) %> |
-<%= link_to 'Back', stations_path %>
-
-
-<div style='width: 600px;'>
-  <div id="map" style='width: 600px; height: 400px;'></div>
-</div>
-
-<script type="text/javascript">
-handler = Gmaps.build('Google');
-handler.buildMap({ provider: {  disableDefaultUI: true , maxZoom: 16, draggable:true}, 
-internal: {id: 'map'}}, function(){
-
-  markers = handler.addMarkers(<%=raw @coordinates.to_json %>);
-
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
-});
-</script>
-
-</div>
-</div>
+            <%= link_to 'Edit', edit_station_path(@station) %> |
+            <%= link_to 'Back', stations_path %>
 
 
-<div class="panel panel-default center-block">
- <div class="panel-body"> 
+            <div style='width: 600px;'>
+                  <div id="map" style='width: 600px; height: 400px;'></div>
+            </div>
 
-<h1>Crear un comentario!</h1>
+            <script type="text/javascript">
+                  handler = Gmaps.build('Google');
+                  handler.buildMap({ provider: {  disableDefaultUI: true , maxZoom: 16, draggable:true}, 
+                  internal: {id: 'map'}}, function(){
 
-<%= render partial:'comments/commentStation' %>
+                    markers = handler.addMarkers(<%=raw @coordinates.to_json %>);
 
-<%= link_to 'Back', comments_path %>
-</div>
-</div>
+                    handler.bounds.extendWith(markers);
+                    handler.fitMapToBounds();
+                  });
+            </script>
 
-<div class="panel panel-default center-block">
- <div class="panel-body"> 
+    </div>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Author</th>
-      <th>Honesty</th>
-      <th>Speed of Service</th>
-      <th>Customer Service</th>
 
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div class="panel panel-default center-block">
+    <div class="panel-body"> 
 
-  <tbody>
-    <% @station.comments.each do |station| %>
-      <tr>
-        <td><%= station.title %></td>
-        <td><%= station.description %></td>
-        <td><%= station.user.name %></td>
-        <td><%= station.rating.honesty %></td>
-        <td><%= station.rating.speed_service %></td>
-        <td><%= station.rating.customer_service %></td>
+          <h1>Crear un comentario!</h1>
+          <%= render partial:'comments/commentStation' %>
+          <%= link_to 'Back', comments_path %>
 
-      </tr>
+    </div>
+  </div>
+
+
+
+      <% @pagecomments.each do |station| %>
+
+
+
+  <div class="panel panel-default commentpanel">
+    <div class="panel-body">
+      <div class="comment-content">
+
+
+
+                  <% if station.rating.honesty == 1%>
+                  <% @honesty_class = 'rating onestar'%>
+                  <% elsif station.rating.honesty == 2%>
+                  <% @honesty_class = 'rating twostar'%>
+                  <% elsif station.rating.honesty == 3%>
+                  <% @honesty_class = 'rating threestar'%>
+                  <% elsif station.rating.honesty == 4%>
+                  <% @honesty_class = 'rating fourstar'%>
+                  <% elsif station.rating.honesty == 5%>
+                  <% @honesty_class = 'rating fivestar'%>
+                  <% end %>
+
+
+                  <% if station.rating.speed_service == 1%>
+                  <% @speed_class = 'rating onestar'%>
+                  <% elsif station.rating.speed_service == 2%>
+                  <% @speed_class = 'rating twostar'%>
+                  <% elsif station.rating.speed_service == 3%>
+                  <% @speed_class = 'rating threestar'%>
+                  <% elsif station.rating.speed_service == 4%>
+                  <% @@speed_class = 'rating fourstar'%>
+                  <% elsif station.rating.speed_service == 5%>
+                  <% @speed_class = 'rating fivestar'%>
+                  <% end %>
+
+
+                  <% if station.rating.customer_service == 1%>
+                  <% @customer_class = 'rating onestar'%>
+                  <% elsif station.rating.customer_service == 2%>
+                  <% @customer_class = 'rating twostar'%>
+                  <% elsif station.rating.customer_service == 3%>
+                  <% @customer_class = 'rating threestar'%>
+                  <% elsif station.rating.customer_service == 4%>
+                  <% @customer_class = 'rating fourstar'%>
+                  <% elsif station.rating.customer_service == 5%>
+                  <% @customer_class = 'rating fivestar'%>
+                  <% end %>
+               
+                  <p> <center>"<%= station.title %>"</center></p> 
+                  <hr>
+                  <p> <center><font color="#2c3e50"> <%= station.user.name %></font>  opino: &nbsp; <%= station.description %></center> </p>
+                  <hr>
+
+
+                <table align="center">
+
+                    <thead>
+                         <tr>
+                              <th>Honestidad</th>
+                              <th>Velocidad del servicio</th>
+                              <th>Atencion al cliente</th>
+                         </tr>
+                    </thead>
+
+                      <tbody>
+                          <tr>
+                                  <td align="left"><ul class="<%= @honesty_class%>">
+                                    <li class="one"><a  title="1 Star">1</a></li>
+                                    <li class="two"><a  title="2 Stars">2</a></li>
+                                    <li class="three"><a title="3 Stars">3</a></li>
+                                    <li class="four"><a  title="4 Stars">4</a></li>
+                                    <li class="five"><a  title="5 Stars">5</a></li>
+                                  </ul></td>
+                            
+                                  <td align="center" ><ul class="<%= @speed_class%>">
+                                    <li class="one"><a  title="1 Star">1</a></li>
+                                    <li class="two"><a  title="2 Stars">2</a></li>
+                                    <li class="three"><a title="3 Sta rs">3</a></li>
+                                    <li class="four"><a  title="4 Stars">4</a></li>
+                                    <li class="five"><a  title="5 Stars">5</a></li>
+                                  </ul></td>
+                            
+                                  <td><ul class="<%= @customer_class%>">
+                                    <li class="one"><a  title="1 Star">1</a></li>
+                                    <li class="two"><a  title="2 Stars">2</a></li>
+                                    <li class="three"><a title="3 Stars">3</a></li>
+                                    <li class="four"><a  title="4 Stars">4</a></li>
+                                    <li class="five"><a  title="5 Stars">5</a></li>
+                                  </ul></td>
+                           </tr>
+                      </tbody>
+                </table>
+      </div>
+    </div>
+  </div>
+
     <% end %>
-  </tbody>
-</table>
 
-</div>
-</div>
+<%= paginate @pagecomments %>

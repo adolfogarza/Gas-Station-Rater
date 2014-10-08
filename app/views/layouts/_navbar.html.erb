@@ -9,16 +9,15 @@
     </button>
     <%= link_to "Gasolina Segura", root_path, class:"navbar-brand"%>
   </div>
-
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav navbar-right">
-  <% if current_user %>
-    <li><%= link_to "Cerrar sesión", log_out_path %></li>
-  <% else %>
-    <li><%= link_to "Registrarse", sign_up_path %></li>
-    <li><%= link_to "Iniciar sesión", log_in_path %></li>
-  <% end %>
+      <% if current_user %>
+        <li><%= link_to "Cerrar sesión", log_out_path %></li>
+      <% else %>
+        <li><%= link_to "Registrarse", sign_up_path %></li>
+        <li><%= link_to "Iniciar sesión", log_in_path %></li>
+      <% end %>
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>

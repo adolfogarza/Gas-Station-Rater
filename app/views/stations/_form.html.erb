@@ -2,15 +2,13 @@
   <% if @station.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@station.errors.count, "error") %> prohibited this station from being saved:</h2>
-
       <ul>
-      <% @station.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @station.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-
   <div class="field">
     <%= f.label :legal_name %><br>
     <%= f.text_field :legal_name %>
@@ -19,7 +17,6 @@
     <%= f.label :address %><br>
     <%= f.text_field :address %>
   </div>
-
   <div class="actions">
     <%= f.submit %>
   </div>

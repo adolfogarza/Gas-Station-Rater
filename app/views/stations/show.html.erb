@@ -3,19 +3,19 @@
     <p id="notice"><%= notice %></p>
     <div id="star"></div>
     <p>
-      <strong>Razon Social:</strong>
+      <strong><%= t('views.stations.name') %></strong>
       <%= @station.legal_name %>
     </p>
     <p>
-      <strong>Direccion:</strong>
+      <strong><%= t('views.stations.address') %></strong>
       <%= @station.location.address %>
     </p>
     <p>
-      <strong>Latitud:</strong>
+      <strong><%= t('views.stations.latitude') %></strong>
       <%= @station.location.latitude %>
     </p>
     <p>
-      <strong>Longitud:</strong>
+      <strong><%= t('views.stations.longitude') %></strong>
       <%= @station.location.longitude %>
     </p>
     <%= link_to 'Edit', edit_station_path(@station) %> |
@@ -36,7 +36,7 @@
 </div>
 <div class="panel panel-default center-block">
   <div class="panel-body"> 
-    <h1>Crear un comentario!</h1>
+    <h1><%= t('views.stations.create_comment') %></h1>
     <%= render partial:'comments/commentStation' %>
     <%= link_to 'Back', comments_path %>
   </div>
@@ -89,9 +89,9 @@
       <table align="center">
         <thead>
            <tr>
-              <th>Honestidad</th>
-              <th>Velocidad del servicio</th>
-              <th>Atencion al cliente</th>
+              <th><%= t('views.stations.honesty') %></th>
+              <th><%= t('views.stations.speed') %></th>
+              <th><%= t('views.stations.customer') %></th>
            </tr>
         </thead>
           <tbody>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  honesty: 1
+  speed_service: 1
+  customer_service: 1
+
+two:
+  honesty: 1
+  speed_service: 1
+  customer_service: 1

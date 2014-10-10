@@ -1,0 +1,8 @@
+es:
+  views:
+    paginas:
+        title: '¡Bienvenido a Gasolina Segura!'
+        motto: 'Un sistema que te permite calificar la calidad de servicio que recibes en las diferentes sucursales'
+        message: '¡Abre una cuenta ahora y comienza a califica'
+        login: 'Iniciar sesión'
+        sign_up: 'Abre una cuenta'

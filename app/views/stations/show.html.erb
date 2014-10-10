@@ -1,7 +1,5 @@
 <div class="panel panel-default center-block">
   <div class="panel-body"> 
-    <p id="notice"><%= notice %></p>
-    <div id="star"></div>
     <p>
       <strong><%= t('views.stations.name') %></strong>
       <%= @station.legal_name %>
@@ -18,31 +16,28 @@
       <strong><%= t('views.stations.longitude') %></strong>
       <%= @station.location.longitude %>
     </p>
-    <%= link_to 'Edit', edit_station_path(@station) %> |
-    <%= link_to 'Back', stations_path %>
-    <div style='width: 600px;'>
-      <div id="map" style='width: 600px; height: 400px;'></div>
-    </div>
-    <script type="text/javascript">
-        handler = Gmaps.build('Google');
-        handler.buildMap({ provider: {  disableDefaultUI: true , maxZoom: 16, draggable:true}, 
-        internal: {id: 'map'}}, function(){
-          markers = handler.addMarkers(<%=raw @coordinates.to_json %>);
-          handler.bounds.extendWith(markers);
-          handler.fitMapToBounds();
-        });
-    </script>
   </div>
+  <div>
+    <div class="googleMaps" id="map" style='width: 1137px; height: 300px;'></div>
+    <br>
+  </div>
+  <script type="text/javascript">
+      handler = Gmaps.build('Google');
+      handler.buildMap({ provider: {  disableDefaultUI: true , maxZoom: 16, draggable:true}, 
+      internal: {id: 'map'}}, function(){
+        markers = handler.addMarkers(<%=raw @coordinates.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+      });
+  </script>
 </div>
 <div class="panel panel-default center-block">
-  <div class="panel-body"> 
-    <h1><%= t('views.stations.create_comment') %></h1>
+  <div class="panel-body commentBox"> 
     <%= render partial:'comments/commentStation' %>
-    <%= link_to 'Back', comments_path %>
   </div>
 </div>
 <% @pagecomments.each do |station| %>
-<div class="panel panel-default commentpanel">
+<div class="panel panel-default commentpanel center-block">
   <div class="panel-body">
     <div class="comment-content">
 
@@ -65,7 +60,7 @@
       <% elsif station.rating.speed_service == 3%>
       <% @speed_class = 'rating threestar'%>
       <% elsif station.rating.speed_service == 4%>
-      <% @@speed_class = 'rating fourstar'%>
+      <% @speed_class = 'rating fourstar'%>
       <% elsif station.rating.speed_service == 5%>
       <% @speed_class = 'rating fivestar'%>
       <% end %>
@@ -82,7 +77,7 @@
       <% @customer_class = 'rating fivestar'%>
       <% end %>
 
-      <p> <center>"<%= station.title %>"</center></p> 
+      <p><center>"<%= station.title %>"</center></p> 
       <hr>
       <p> <center><font color="#2c3e50"> <%= station.user.name %></font>  opino: &nbsp; <%= station.description %></center> </p>
       <hr>
@@ -98,29 +93,29 @@
             <tr>
               <td align="left">
                 <ul class="<%= @honesty_class%>">
-                  <li class="one"><a  title="1 Star">1</a></li>
-                  <li class="two"><a  title="2 Stars">2</a></li>
-                  <li class="three"><a title="3 Stars">3</a></li>
-                  <li class="four"><a  title="4 Stars">4</a></li>
-                  <li class="five"><a  title="5 Stars">5</a></li>
+                  <li class="one"><a  title="1 Estrella">1</a></li>
+                  <li class="two"><a  title="2 Estrellas">2</a></li>
+                  <li class="three"><a title="3 Estrellas">3</a></li>
+                  <li class="four"><a  title="4 Estrellas">4</a></li>
+                  <li class="five"><a  title="5 Estrellas">5</a></li>
                 </ul>
               </td>
               <td align="center" >
                 <ul class="<%= @speed_class%>">
-                  <li class="one"><a  title="1 Star">1</a></li>
-                  <li class="two"><a  title="2 Stars">2</a></li>
-                  <li class="three"><a title="3 Sta rs">3</a></li>
-                  <li class="four"><a  title="4 Stars">4</a></li>
-                  <li class="five"><a  title="5 Stars">5</a></li>
+                  <li class="one"><a  title="1 Estrella">1</a></li>
+                  <li class="two"><a  title="2 Estrellas">2</a></li>
+                  <li class="three"><a title="3 Estrellas">3</a></li>
+                  <li class="four"><a  title="4 Estrellas">4</a></li>
+                  <li class="five"><a  title="5 Estrellas">5</a></li>
                 </ul>
               </td>
               <td>
                 <ul class="<%= @customer_class%>">
-                  <li class="one"><a  title="1 Star">1</a></li>
-                  <li class="two"><a  title="2 Stars">2</a></li>
-                  <li class="three"><a title="3 Stars">3</a></li>
-                  <li class="four"><a  title="4 Stars">4</a></li>
-                  <li class="five"><a  title="5 Stars">5</a></li>
+                  <li class="one"><a  title="1 Estrella">1</a></li>
+                  <li class="two"><a  title="2 Estrellas">2</a></li>
+                  <li class="three"><a title="3 Estrellas">3</a></li>
+                  <li class="four"><a  title="4 Estrellas">4</a></li>
+                  <li class="five"><a  title="5 Estrellas">5</a></li>
                 </ul>
               </td>
              </tr>
@@ -131,8 +126,3 @@
 </div>
 <% end %>
 <%= paginate @pagecomments %>
-<script>
-  $('#star').raty({
-    path: '/assets'
-  });
-</script>

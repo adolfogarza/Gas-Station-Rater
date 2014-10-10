@@ -36,3 +36,7 @@ en:
         honesty: 'Honestidad'
         speed: 'Velocidad del servicio'
         customer: 'Atención al cliente'
+    comments:
+        submit: 'Comentar Ahora'
+        title: 'Titulo: '
+        description: 'Descripción: '

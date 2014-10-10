@@ -11,31 +11,77 @@
   <% end %>
   <%= f.hidden_field :station_id, value: @station.id %>
   <div class="field">
-    <%= f.label :Titulo %><br>
+    <%= f.label t('views.comments.title') %><br>
     <%= f.text_field :title, class: "form-control"%>
   </div>
   <div class="field">
-    <%= f.label :Descripcion %><br>
+    <%= f.label t('views.comments.description') %><br>
     <%= f.text_area :description, class: "form-control"%>
   </div>
   <% @comment.build_rating %>
-  <%= f.fields_for :rating do |jj| %>
-    <div class="field">
-      <%= jj.label :Honestidad %><br>
-      <%= jj.number_field :honesty %>
-    </div>
-    <div class="field">
-      <%= jj.label :Velocidad_del_servicio %><br>
-      <%= jj.number_field :speed_service %>
-    </div>
-    <div class="field">
-      <%= jj.label :Atencion_al_cliente %><br>
-      <%= jj.number_field :customer_service %>
-    </div>
-    <%= f.hidden_field :comment_id, value: @comment.id %>
-  <% end %>
-  <br>
-  <div class="actions">
-    <%= f.submit class: "btn btn-primary"%>
+  <table align="center">
+    <thead>
+      <tr>
+        <th><%= t('views.stations.honesty') %></th>
+        <th><%= t('views.stations.speed') %></th>
+        <th><%= t('views.stations.customer') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <%= f.fields_for :rating do |jj| %>
+          <td>          
+              <div class="field">
+                <%= jj.hidden_field :honesty,:id=>"honesty_field" %>
+              </div>
+              <div id="honesty_star"></div>
+          </td>
+          <td align="center">
+              <div class="field">
+                <%= jj.hidden_field :speed_service,:id=>"speed_field" %>
+              </div>
+              <div id="speed_star"></div>
+          </td>
+          <td>
+              <div class="field">
+                <%= jj.hidden_field :customer_service,:id=>"customer_field" %>
+              </div>
+              <div id="customer_star"></div>
+              <%= f.hidden_field :comment_id, value: @comment.id %>
+          </td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+  <div class="actions" align="right">
+    <%= f.button t('views.comments.submit'), class: "btn btn-primary"%>
   </div>
 <% end %>
+<script>
+  $('#honesty_star').raty({
+    path: '/assets',
+       click: function(score, evt) {
+    $(document).ready(function(){
+        $("#honesty_field").val(score);
+   });
+    }
+  });
+
+  $('#speed_star').raty({
+    path: '/assets',
+       click: function(score, evt) {
+    $(document).ready(function(){
+        $("#speed_field").val(score);
+   });
+    }
+  });
+
+  $('#customer_star').raty({
+    path: '/assets',
+       click: function(score, evt) {
+    $(document).ready(function(){
+        $("#customer_field").val(score);
+   });
+    }
+  });
+</script>

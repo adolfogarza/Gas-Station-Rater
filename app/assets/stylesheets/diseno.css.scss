@@ -30,15 +30,24 @@ $jumbotron-bg:                                         white;
     
 }
 
-.commentpanel {
-    width: 450px;
-    height: 200px;
-    
+.commentBox {
+    padding-bottom: 0px;
+    margin: 0px;
+
 }
 
 
-body {
-    
+.googleMaps {
+
+}
+
+.commentpanel {
+    height: 200px;
+    opacity: 0.95;
+}
+
+
+body {  
     background-image: url("/assets/pumping_gas.jpg");
     background-repeat: no-repeat;
     background-color: #ecf0f1;

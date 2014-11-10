@@ -36,6 +36,9 @@ en:
         honesty: 'Honestidad'
         speed: 'Velocidad del servicio'
         customer: 'Atención al cliente'
+        average_honesty: 'Honestidad Promedio: '
+        average_speed: 'Velocidad Promedio: '
+        average_customer: 'Atencion Promedio: '
     comments:
         submit: 'Comentar Ahora'
         title: 'Titulo: '

@@ -1,20 +1,45 @@
 <div class="panel panel-default center-block">
-  <div class="panel-body"> 
+  <div class="panel-body showCapitalized basicInformation"> 
     <p>
       <strong><%= t('views.stations.name') %></strong>
       <%= @station.legal_name %>
     </p>
+    <hr>
     <p>
       <strong><%= t('views.stations.address') %></strong>
       <%= @station.location.address %>
     </p>
     <p>
+    <hr>
       <strong><%= t('views.stations.latitude') %></strong>
       <%= @station.location.latitude %>
     </p>
+    <hr>
     <p>
       <strong><%= t('views.stations.longitude') %></strong>
       <%= @station.location.longitude %>
+    </p>
+  </div>
+  <div class="panel-body ratingInformation">
+    <p>
+      <strong><%= t('views.stations.average_honesty') %></strong>
+      <% unless @station.counter_comments.nil? %>
+      <%= (@station.counter_honesty/@station.counter_comments) %>
+      <% end %>
+    </p>
+    <p>
+    <hr>
+      <strong><%= t('views.stations.average_speed') %></strong>
+      <% unless @station.counter_comments.nil? %>
+      <%= (@station.counter_speed_service/@station.counter_comments) %>
+      <% end %>
+    </p>
+    <p>
+    <hr>
+      <strong><%= t('views.stations.average_customer') %></strong>
+      <% unless @station.counter_comments.nil? %>
+      <%= (@station.counter_customer_service/@station.counter_comments) %>
+      <% end %>
     </p>
   </div>
   <div>

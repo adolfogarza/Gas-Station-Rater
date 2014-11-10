@@ -1,7 +1,7 @@
 class Rating < ActiveRecord::Base
+	#associations
 	belongs_to :comment
 
-		validates_presence_of :honesty
-		validates_presence_of :speed_service
-		validates_presence_of :customer_service
+	#validations
+	validates :honesty, :speed_service, :customer_service, presence: true, length: { in: 1..5 }
 end

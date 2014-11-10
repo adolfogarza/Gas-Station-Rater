@@ -36,9 +36,19 @@ $jumbotron-bg:                                         white;
 
 }
 
+.showCapitalized{
+    text-transform: capitalize;
+}
 
-.googleMaps {
+.basicInformation{
+    width: 50%;
+    float: left;
+    border-left: medium solid #2980b9;
 
+}
+
+.ratingInformation{
+    margin-left: 50%;    
 }
 
 .commentpanel {

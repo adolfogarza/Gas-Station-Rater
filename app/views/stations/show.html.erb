@@ -24,21 +24,21 @@
     <p>
       <strong><%= t('views.stations.average_honesty') %></strong>
       <% unless @station.counter_comments.nil? %>
-      <%= (@station.counter_honesty/@station.counter_comments) %>
+      <%= (@station.counter_honesty/@station.counter_comments) %> / 5
       <% end %>
     </p>
     <p>
     <hr>
       <strong><%= t('views.stations.average_speed') %></strong>
       <% unless @station.counter_comments.nil? %>
-      <%= (@station.counter_speed_service/@station.counter_comments) %>
+      <%= (@station.counter_speed_service/@station.counter_comments) %> / 5
       <% end %>
     </p>
     <p>
     <hr>
       <strong><%= t('views.stations.average_customer') %></strong>
       <% unless @station.counter_comments.nil? %>
-      <%= (@station.counter_customer_service/@station.counter_comments) %>
+      <%= (@station.counter_customer_service/@station.counter_comments) %> / 5
       <% end %>
     </p>
   </div>

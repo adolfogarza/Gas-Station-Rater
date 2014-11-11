@@ -1,12 +1,6 @@
+<% if current_user %>
+<%= render partial:'paginas/main' %>
+<% else %>
 <%= render partial:'paginas/slider' %>
-<div class="jumbotron center">
-	<h2><%= t('views.paginas.title') %></h2>
-	<br>
-	<h3><%= t('views.paginas.motto') %></h3>
-	<h3><%= t('views.paginas.message') %></h3>
-	<br>
-	<p>
-	   <%= link_to t('views.paginas.login'), log_in_path, class: "btn btn-default btn-lg" %>
-	   <%= link_to t('views.paginas.sign_up'), sign_up_path, class: "btn btn-primary btn-lg" %>
-	</p>
-</div>
+<%= render partial:'paginas/catcher' %>
+<% end %>

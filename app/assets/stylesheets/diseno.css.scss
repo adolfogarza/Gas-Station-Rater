@@ -11,6 +11,33 @@ $jumbotron-bg:                                         white;
 @import 'bootstrap';
 @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
 
+.navbar-form .form-control {
+    display: inline-block;
+    width: 100%;
+    vertical-align: middle;
+}
+.navbar-form {
+    overflow: auto;
+}
+.navbar-form .form-group {
+    display: inline;
+}
+
+.main-container{
+    width: 1000 px;
+}
+.my-information{
+   float: left;
+   width: 25%;
+}
+.recent-comments{
+   float: left;
+   width: 50%;
+}
+.top-stations{
+   float: left;
+   width: 25%;
+}
 
 .center {
      text-align: center;

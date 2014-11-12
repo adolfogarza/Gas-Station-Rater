@@ -1,26 +1,29 @@
 <div class="panel panel-default center-block">
+<div class="panel-heading" align="center">Lista de Sucursales</div>
   <div class="panel-body"> 
-    <h1>Listing stations</h1>
     <table>
       <thead>
         <tr>
-          <th>Legal name</th>
-          <th>Address</th>
-          <th colspan="3"></th>
+          <th>Nombre de la sucursal</th>
+          <th>Direcci&oacute;n Fiscal</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
         <% @stations.each do |station| %>
           <tr>
             <td><%= station.legal_name %></td>
-            <td><%= link_to 'Show', station %></td>
-            <td><%= link_to 'Edit', edit_station_path(station) %></td>
-            <td><%= link_to 'Destroy', station, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= station.location.address %></td>
+            <td><%= link_to 'Ver Perfil', station %></td>
+            <% if current_user.privileges == 1 %>
+              <td><%= link_to 'Editar', edit_station_path(station) %></td>
+              <td><%= link_to 'Borrar', station, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% else %>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
     </table>
     <br>
-    <%= link_to 'New Station', new_station_path %>
   </div>
 </div>

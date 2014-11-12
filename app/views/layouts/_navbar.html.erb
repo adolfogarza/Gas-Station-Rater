@@ -11,11 +11,9 @@
   </div>
   <% if current_user %>
   <div class="col-md-6  col-sm-offset-1">
-    <form class="navbar-form " role="search" >    
-      <div class="form-group" >
-        <input type="text" class="form-control" placeholder="Escribe el nombre de la gasolinera que deseas buscar">
-      </div>
-    </form>   
+    <%= form_tag(stations_path, :method => "get", class: "navbar-form") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Escribe el nombre de la gasolinera que deseas buscar", class: 'form-control' %>
+    <% end %>
   </div>
   <% end %>
   <!-- Collect the nav links, forms, and other content for toggling -->

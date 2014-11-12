@@ -1,15 +1,18 @@
 class StationsController < ApplicationController
   before_action :set_station, only: [:show, :edit, :update, :destroy]
   before_action :verify_session, except: [:index, :show] #verifica que haya una sesion online antes que alguien pueda crear una estacion.
+  before_action :correct_user, only: [:new, :edit, :update, :destroy]
 
-  # GET /stations
-  # GET /stations.json
   def index
     @stations = Station.all
+
+    if params[:search]
+      @stations = Station.search(params[:search]).order("created_at DESC")
+    else
+      @stations = Station.all.order('created_at DESC')
+    end
   end
 
-  # GET /stations/1
-  # GET /stations/1.json
   def show
     @comment=Comment.new
     @pagecomments = @station.comments.order("created_at DESC").page(params[:page]).per(5)
@@ -20,18 +23,16 @@ class StationsController < ApplicationController
 
   end
 
-  # GET /stations/new
+
   def new
     @station = Station.new
     @station.build_location # Esta linea de codigo permite que se cree la clave foranea con el id de la estacion en la tabla de locations.
   end
 
-  # GET /stations/1/edit
+
   def edit
   end
 
-  # POST /stations
-  # POST /stations.json
   def create
     @station = Station.new(station_params)
 
@@ -46,8 +47,6 @@ class StationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /stations/1
-  # PATCH/PUT /stations/1.json
   def update
     @current_location_value = Location.find_by_station_id(@station.id).id
     respond_to do |format|
@@ -62,8 +61,6 @@ class StationsController < ApplicationController
     end
   end
 
-  # DELETE /stations/1
-  # DELETE /stations/1.json
   def destroy
     @station.destroy
     Location.find_by_station_id(@station.id).destroy
@@ -74,19 +71,23 @@ class StationsController < ApplicationController
   end
 
     def verify_session
+      if current_user.nil?
+        redirect_to log_in_url, :notice => "Debes iniciar sesion"
+      end
+    end
 
-    if current_user.nil?
-      redirect_to log_in_url, :notice => "Debes iniciar sesion"
-  end
-end
+    def correct_user
+      if current_user.privileges == 0
+        redirect_to root_url, notice: "No estas autorizado para modificar estaciones!" if @comment.nil?
+      end
+    end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_station
       @station = Station.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def station_params
       params.require(:station).permit(:legal_name, :counter_honesty, :counter_speed_service, :counter_customer_service, :counter_comments, location_attributes:[:address])
     end

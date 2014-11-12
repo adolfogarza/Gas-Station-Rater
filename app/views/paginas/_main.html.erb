@@ -5,7 +5,10 @@
 		<ul style="list-style-type:none">
 				<li><h3> Configuraci&oacute;n de la cuenta </h3></li>
 				<li><h3> Mis Comentarios </h3></li>
-				<li><h3> <%= link_to 'Dar de alta una sucursal', new_station_path %> </h3></li>
+				<% if current_user.privileges == 1 %>
+					<li><h3> <%= link_to 'Dar de alta una sucursal', new_station_path %> </h3></li>
+				<% else %>
+				<% end %>
 				<li><h3> Generar Reportes </h3></li>
 		</ul>
 	</div>

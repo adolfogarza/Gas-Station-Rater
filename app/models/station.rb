@@ -18,4 +18,8 @@ class Station < ActiveRecord::Base
 			self.counter_comments = 0
 		end
 	end
+
+	def self.search(query)
+	  where("lower(legal_name) like ?", "%#{query.downcase}%") 
+	end
 end

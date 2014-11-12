@@ -11,6 +11,10 @@ $jumbotron-bg:                                         white;
 @import 'bootstrap';
 @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
 
+.create_station {
+  width: 400px;
+}
+
 .navbar-form .form-control {
     display: inline-block;
     width: 100%;
@@ -29,12 +33,17 @@ $jumbotron-bg:                                         white;
 .my-information{
    float: left;
    width: 25%;
+   margin-right: 5px;
 }
 .recent-comments{
    float: left;
-   width: 50%;
+   width: 45%;
+   margin-right: 5px;
+   margin-left: 5px;
+
 }
 .top-stations{
+   margin-left: 5px;
    float: left;
    width: 25%;
 }

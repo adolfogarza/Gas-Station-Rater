@@ -29,7 +29,7 @@
 		      <tr>
 		        <td><%= link_to @comment_description, comment%></td>
 		        <td><%= comment.user.name if comment.user %></td>
-		        <td><%= Station.find_by_id(comment.station_id).legal_name%></td>
+		        <td><%= comment.station.legal_name if comment.station%></td>
 		      </tr>
 		    <% end %>
 		  </tbody>

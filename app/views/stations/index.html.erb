@@ -12,8 +12,8 @@
       <tbody>
         <% @stations.each do |station| %>
           <tr>
-            <td><%= station.legal_name %></td>
-            <td><%= station.location.address %></td>
+            <td><%= station.legal_name.titleize %></td>
+            <td><%= station.location.address.titleize %></td>
             <td><%= link_to 'Ver Perfil', station %></td>
             <% if current_user.privileges == 1 %>
               <td><%= link_to 'Editar', edit_station_path(station) %></td>

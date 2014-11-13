@@ -1,11 +1,11 @@
 class Location < ActiveRecord::Base
-	#associations
+	#Associations
 	belongs_to :station # Una estacion tiene una locacion y una locacion pertenece a una estacion solamente.
 
-	#validations
+	#Validations
 	validates :address, presence: true, length: { in: 4..80 }, uniqueness: true
 
-	#gem conditions
+	#Gem
 	geocoded_by :address #este campo determina la longitud y latitud.
 	after_validation :geocode #valida que se llene y luego le da una valor a las columnas longitud y latitud.
 end

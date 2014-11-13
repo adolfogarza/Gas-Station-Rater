@@ -1,60 +1,61 @@
 <div class="main-container">
+
 	<div class="panel panel-default my-information">
 		<div class="panel-heading" align="center"> Panel de usuario </div>
 		<br>
 		<ul style="list-style-type:none">
-				<li><h3> Configuraci&oacute;n de la cuenta </h3></li>
-				<li><h3> Mis Comentarios </h3></li>
-				<% if current_user.privileges == 1 %>
-					<li><h3> <%= link_to 'Dar de alta una sucursal', new_station_path %> </h3></li>
-				<% else %>
-				<% end %>
-				<li><h3> Generar Reportes </h3></li>
+			<li><h3> Configuraci&oacute;n de la cuenta </h3></li>
+			<li><h3> Mis Comentarios </h3></li>
+			<% if current_user.privileges == 1 %>
+				<li><h3> <%= link_to 'Dar de alta una sucursal', new_station_path %> </h3></li>
+			<% else %>
+			<% end %>
+			<li><h3> Generar Reportes </h3></li>
 		</ul>
 	</div>
 
 	<div class="panel panel-default recent-comments">
-	<div class="panel-heading" align="center"> Comentarios Recientes</div>
+		<div class="panel-heading" align="center"> Comentarios Recientes</div>
 		<table align="center">
-		  <thead>
-		    <tr>
-		      <th>Descripci&oacute;n</th>
-		      <th>Usuario</th>
-		      <th>Sucursal</th>
-		    </tr>
-		  </thead>
-		  <tbody>
-		    <% @recent_comments.each do |comment| %>
-		    	<% @comment_description = truncate comment.description, length: 20 %>
-		      <tr>
-		        <td><%= link_to @comment_description, comment%></td>
-		        <td><%= comment.user.name if comment.user %></td>
-		        <td><%= comment.station.legal_name.titleize if comment.station%></td>
-		      </tr>
-		    <% end %>
-		  </tbody>
+			<thead>
+				<tr>
+					<th>Descripci&oacute;n</th>
+					<th>Usuario</th>
+					<th>Sucursal</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @recent_comments.each do |comment| %>
+				<% @comment_description = truncate comment.description, length: 20 %>
+				<tr>
+					<td><%= link_to @comment_description, comment%></td>
+					<td><%= comment.user.name if comment.user %></td>
+					<td><%= comment.station.legal_name.titleize if comment.station%></td>
+				</tr>
+				<% end %>
+			</tbody>
 		</table>
 	</div>
 
 	<div class="panel panel-default top-stations">
-	<div class="panel-heading " align="center"> Top 5 Gasolineras </div>
-    <table align="center">
-      <thead>
-        <tr>
-          <th>Sucursal</th>
-          <th>Puntuaci&oacute;n</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @top_stations.each do |station| %>
-        	<% @station_name = station.legal_name %>
-          <tr>
-            <td><%= link_to @station_name.titleize, station%></td>
-            <td><%= station.counter_honesty + station.counter_customer_service + station.counter_speed_service %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+		<div class="panel-heading " align="center"> Top 5 Gasolineras </div>
+		<table align="center">
+			<thead>
+				<tr>
+					<th>Sucursal</th>
+					<th>Puntuaci&oacute;n</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @top_stations.each do |station| %>
+					<% @station_name = station.legal_name %>
+					<tr>
+						<td><%= link_to @station_name.titleize, station%></td>
+						<td><%= station.counter_honesty + station.counter_customer_service + station.counter_speed_service %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
 	</div>
+	
 </div>

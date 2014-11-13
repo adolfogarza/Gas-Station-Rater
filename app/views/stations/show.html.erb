@@ -50,6 +50,16 @@
         <% end %>
       <% end %>
     </p>
+
+    <% honesty = {} %>
+    <% customer_service = {} %>
+    <% speed_service = {} %>
+    <% Rating.get_station_ratings(@station.id).each do |r| %>
+      <% honesty[r.created_at] = r.honesty %>
+      <% customer_service[r.created_at] = r.customer_service %>
+      <% speed_service[r.created_at] = r.speed_service %>
+    <% end %>
+    <%= line_chart [ { name: 'Honestidad', data: honesty }, { name: 'Servicio al cliente', data: customer_service },{ name: 'Velocidad del servicio', data: speed_service} ] %>
   </div>
   <div>
     <div class="googleMaps" id="map" style='width: 1137px; height: 300px;'></div>

@@ -1,17 +1,18 @@
 class User < ActiveRecord::Base
   attr_accessor :password
-  #associations
+  #Associations
   has_many :comments
 
-  #triggers
+  #Callbacks
   before_save :encrypt_password #antes de guardar el usuario a la base de datos, ejecuta el metodo encrypt_password.
   before_save :asign_priority #antes de guardar el usuario, se le asigna una prioridad de 0, para poder diferenciar entre usuarios administradores y usuarios normales.
 
-  #validations
+  #Validations
   validates :name, :lastname, presence: true
   validates_presence_of :password, :on => :create
   validates :email, presence: true, uniqueness: true
-    
+
+  #Methods 
   def self.authenticate(email, password)
     user = find_by_email(email)
     if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)

@@ -89,26 +89,25 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
-    @station = Station.find_by_id(@comment.station_id)
-    unless @station.counter_honesty.nil?
-      @station.counter_honesty -= @comment.rating.honesty      
-    end
-    unless @station.counter_customer_service.nil?
-      @station.counter_customer_service -= @comment.rating.customer_service      
-    end
-    unless @station.counter_speed_service.nil?
-      @station.counter_speed_service -= @comment.rating.speed_service      
-    end
-    unless @station.counter_comments.nil?
-      @station.counter_comments -= 1      
-    end    
 
-    @station.save    
-
+    if @comment.station
+      @station = Station.find_by_id(@comment.station_id)
+      unless @station.counter_honesty.nil?
+        @station.counter_honesty -= @comment.rating.honesty      
+      end
+      unless @station.counter_customer_service.nil?
+        @station.counter_customer_service -= @comment.rating.customer_service      
+      end
+      unless @station.counter_speed_service.nil?
+        @station.counter_speed_service -= @comment.rating.speed_service      
+      end
+      unless @station.counter_comments.nil?
+        @station.counter_comments -= 1      
+      end 
+      @station.save 
+    end   
     @comment.destroy
-
     Rating.find_by_comment_id(@comment.id).destroy
-    
     respond_to do |format|
       format.html { redirect_to comments_url, notice: 'El comentario ha sido borrado con exito' }
       format.json { head :no_content }

@@ -2,12 +2,12 @@
   <div class="panel-body showCapitalized basicInformation"> 
     <p>
       <strong><%= t('views.stations.name') %></strong>
-      <%= @station.legal_name %>
+      <%= @station.legal_name.titleize %>
     </p>
     <hr>
     <p>
       <strong><%= t('views.stations.address') %></strong>
-      <%= @station.location.address %>
+      <%= @station.location.address.titleize %>
     </p>
     <p>
     <hr>

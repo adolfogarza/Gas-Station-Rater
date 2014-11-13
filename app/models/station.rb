@@ -8,7 +8,7 @@ class Station < ActiveRecord::Base
 	accepts_nested_attributes_for :location # Permite que se guarden atributos de otros modelos en las vistas del modelo estacion.
 
 	#validations
-	validates :legal_name, presence: true, length: { in: 4..35 }, uniqueness: true
+	validates :legal_name, presence: true, length: { in: 4..55 }, uniqueness: true
 
 	def asign_defaults 
 		if self.counter_honesty.nil?

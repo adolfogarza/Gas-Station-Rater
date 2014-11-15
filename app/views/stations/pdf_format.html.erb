@@ -1,0 +1,75 @@
+<%= javascript_include_tag "https://www.google.com/jsapi" %>
+<%= wicked_pdf_javascript_include_tag "chartkick" %>
+
+<h2 align="center">Gasolina Segura</h2>
+<hr>
+<p>
+  <strong>Raz&oacute;n Social</strong>
+  <%= @station.legal_name.titleize %>
+</p21>
+<p>
+  <strong>Direcci&oacute;n: </strong>
+  <%= @station.location.address.titleize %>
+</p>
+<p>
+  <strong><%= t('views.stations.latitude') %></strong>
+  <%= @station.location.latitude %>
+</p>
+<p>
+  <strong><%= t('views.stations.longitude') %></strong>
+  <%= @station.location.longitude %>
+</p>
+
+<p>
+  <strong><%= t('views.stations.average_honesty') %></strong>
+  <% unless @station.counter_comments.nil?%>
+    <% if @station.counter_comments == 0 %>
+    <% else %>
+      <%= (@station.counter_honesty/@station.counter_comments) %> / 5
+    <% end %>
+  <% end %>
+</p>
+
+<p>
+  <strong><%= t('views.stations.average_customer') %></strong>
+  <% unless @station.counter_comments.nil?%>
+    <% if @station.counter_comments == 0 %>
+    <% else %>
+      <%= (@station.counter_customer_service/@station.counter_comments) %> / 5
+    <% end %>
+  <% end %>
+</p>
+
+<p>
+	<strong><%= t('views.stations.average_speed') %></strong>
+	<% unless @station.counter_comments.nil?%>
+		<% if @station.counter_comments == 0 %>
+		<% else %>
+		  <%= (@station.counter_speed_service/@station.counter_comments) %> / 5
+		<% end %>
+	<% end %>
+</p>
+<hr>
+<% honesty = {} %>
+<% customer_service = {} %>
+<% speed_service = {} %>
+<% Rating.get_station_ratings(@station.id).each do |r| %>
+  <% honesty[r.created_at] = r.honesty %>
+  <% customer_service[r.created_at] = r.customer_service %>
+  <% speed_service[r.created_at] = r.speed_service %>
+<% end %>
+<strong>Desempe&ntilde;o de Honestidad:</strong>
+<%= line_chart [name: '', data: honesty ] %>
+<hr>
+<strong>Desempe&ntilde;o de Servicio al cliente:</strong>
+<%= line_chart [name: '', data: customer_service] %>
+<p></p>
+<hr>
+<strong>Desempe&ntilde;o de Velocidad del servicio:</strong>
+<%= line_chart [name: '', data: speed_service ] %>
+<hr>
+<div align="right">
+	<font size="2">Reporte generado el: <%= Date.today.to_s %></font>
+	<br>
+	<font size="2">Usuario: <%= current_user.name + ' ' + current_user.lastname if current_user %></font>
+</div>

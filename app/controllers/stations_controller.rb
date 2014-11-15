@@ -14,6 +14,7 @@ class StationsController < ApplicationController
   end
 
   def show
+
     @comment=Comment.new
     @pagecomments = @station.comments.order("created_at DESC").page(params[:page]).per(5)
     @coordinates = Gmaps4rails.build_markers(@station) do |station, marker| #metodo de la gema que traduce las coordenadas a codigo de jquery.
@@ -21,8 +22,13 @@ class StationsController < ApplicationController
       marker.lng station.location.longitude
     end
 
+    respond_to do |format|
+      format.html
+      format.pdf do            
+        render  :pdf => "file.pdf", :template => 'stations/pdf_format.html.erb', :javascript_delay => 1000, :disable_javascript   => false
+      end
+    end    
   end
-
 
   def new
     @station = Station.new

@@ -15,8 +15,9 @@ gem 'bootstrap-sass'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'rails_12factor'
-gem 'kaminari'
+gem 'kaminari' #This gem is used to paginate views.
 gem 'jquery-turbolinks'
-gem "chartkick"
+gem "chartkick" #This gem is used to generate javascript graphs.
 gem 'groupdate', '~> 2.1.1'
 gem 'active_median', '~> 0.1.0'
+gem 'wicked_pdf' #This gem is used to generate pdf files.

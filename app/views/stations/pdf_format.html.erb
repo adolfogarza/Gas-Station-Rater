@@ -5,11 +5,11 @@
 <hr>
 <p>
   <strong>Raz&oacute;n Social</strong>
-  <%= @station.legal_name.titleize %>
+  <%= @station.legal_name.titleize.html_safe %>
 </p21>
 <p>
   <strong>Direcci&oacute;n: </strong>
-  <%= @station.location.address.titleize %>
+  <%= @station.location.address.titleize.html_safe %>
 </p>
 <p>
   <strong><%= t('views.stations.latitude') %></strong>

@@ -1,0 +1,6 @@
+<% if current_user %>
+	<%= render partial:'pages/main' %>
+<% else %>
+	<%= render partial:'pages/promotion/slider' %>
+	<%= render partial:'pages/promotion/eyecatcher' %>
+<% end %>

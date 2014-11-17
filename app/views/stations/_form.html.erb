@@ -1,7 +1,6 @@
 <%= form_for(@station) do |f| %>
   <% if @station.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@station.errors.count, "error") %> prohibited this station from being saved:</h2>
+    <div id="error_explanation" align="left">
       <ul>
         <% @station.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -10,14 +9,18 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.label :legal_name %><br>
+    <%= f.label :legal_name, 'Razón Social de la Sucursal' %><br>
     <%= f.text_field :legal_name %>
   </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
-  </div>
+  <br>
+  <%= f.fields_for :location do |ff| %>
+    <div class="field">
+      <%= ff.label :address, "Dirección de la Sucursal" %><br>
+      <%= ff.text_field :address %>
+    </div>
+  <% end %>
+  <br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button t('Dar de alta'), class: "btn btn-primary" %>
   </div>
 <% end %>

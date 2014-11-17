@@ -1,0 +1,5 @@
+<%- headers = ['id del comentario', 'usuario', 'fecha', 'id sucursal', 'titulo', 'descripcion'] -%>
+<%= CSV.generate_line headers %>
+<%- @comments.each do |comment| -%>
+  <%= CSV.generate_line([comment.id, comment.user.name, comment.created_at, comment.station.id, comment.title, comment.description.html_safe]) %>
+<%- end -%>

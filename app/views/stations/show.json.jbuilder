@@ -1,1 +1,0 @@
-json.extract! @station, :id, :legal_name, :counter_honesty, :counter_speed_service, :counter_customer_service, :counter_comments, :created_at, :updated_at

@@ -1,8 +1,7 @@
-<div class="panel panel-default center-block edit_comment">
+<div class="panel panel-default center-block" style='width: 50%;'>
 	<div class="panel-heading" align="center">Editar Comentario</div>
-	<div class="panel-body" align="center"> 
-	<%= render 'editComment' %>
-	<%= link_to 'Ver Comentario', @comment %> |
-	<%= link_to 'Regresar', root_path %>
+		<div class="panel-body"> 
+			<%= render partial:'edit_form' %>
+		</div>
 	</div>
 </div>

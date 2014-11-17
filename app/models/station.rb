@@ -1,16 +1,16 @@
 class Station < ActiveRecord::Base
-	#Callbacks
+	#callbacks
 	before_save :asign_defaults
 
-	#Associations
+	#associations
 	has_many :comments # define que es el lado muchos de la relacion entre comentarios y estaciones.
 	has_one :location # define que tiene una locacion solamente.
 	accepts_nested_attributes_for :location # Permite que se guarden atributos de otros modelos en las vistas del modelo estacion.
 
-	#Validations
+	#validations
 	validates :legal_name, presence: true, length: { in: 4..55 }, uniqueness: true
 
-	#Methods
+	#methods
 	def asign_defaults 
 		if self.counter_honesty.nil?
 			self.counter_honesty = 0

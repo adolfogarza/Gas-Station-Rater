@@ -1,11 +1,11 @@
 class StationsController < ApplicationController
+  
   before_action :set_station, only: [:show, :edit, :update, :destroy]
-  before_action :verify_session, except: [:index, :show] #verifica que haya una sesion online antes que alguien pueda crear una estacion.
+  before_action :verify_session
   before_action :correct_user, only: [:new, :edit, :update, :destroy]
 
   def index
     @stations = Station.all
-
     if params[:search]
       @stations = Station.search(params[:search]).order("created_at DESC")
     else
@@ -14,7 +14,6 @@ class StationsController < ApplicationController
   end
 
   def show
-
     @comment=Comment.new
     @pagecomments = @station.comments.order("created_at DESC").page(params[:page]).per(5)
     @coordinates = Gmaps4rails.build_markers(@station) do |station, marker| #metodo de la gema que traduce las coordenadas a codigo de jquery.
@@ -25,7 +24,7 @@ class StationsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do            
-        render  :pdf => "file.pdf", :template => 'stations/pdf_format.html.erb', :javascript_delay => 1000, :disable_javascript   => false
+        render  :pdf => "file.pdf", :template => 'stations/pdf_format.html.erb', :javascript_delay => 3000, :disable_javascript   => false
       end
     end    
   end
@@ -41,10 +40,9 @@ class StationsController < ApplicationController
 
   def create
     @station = Station.new(station_params)
-
     respond_to do |format|
       if @station.save
-        format.html { redirect_to @station, notice: 'Station was successfully created.' }
+        format.html { redirect_to @station, notice: 'La estacion ha sido creada con exito.' }
         format.json { render :show, status: :created, location: @station }
       else
         format.html { render :new }
@@ -57,7 +55,7 @@ class StationsController < ApplicationController
     @current_location_value = Location.find_by_station_id(@station.id).id
     respond_to do |format|
       if @station.update(station_params)
-        format.html { redirect_to @station, notice: 'Station was successfully updated.' }
+        format.html { redirect_to @station, notice: 'La estacion ha sido correctamente actualizada.' }
         format.json { render :show, status: :ok, location: @station }
         Location.find_by_id(@current_location_value).destroy
       else
@@ -71,22 +69,22 @@ class StationsController < ApplicationController
     @station.destroy
     Location.find_by_station_id(@station.id).destroy
     respond_to do |format|
-      format.html { redirect_to stations_url, notice: 'Station was successfully destroyed.' }
+      format.html { redirect_to stations_url, notice: 'La estacion ha sido destruida.' }
       format.json { head :no_content }
     end
   end
 
-    def verify_session
-      if current_user.nil?
-        redirect_to log_in_url, :notice => "Debes iniciar sesion"
-      end
+  def verify_session
+    if current_user.nil?
+      redirect_to log_in_url, :notice => "Debes iniciar sesion"
     end
+  end
 
-    def correct_user
-      if current_user.privileges == 0
-        redirect_to root_url, notice: "No estas autorizado para modificar estaciones!" if @comment.nil?
-      end
+  def correct_user
+    if current_user.privileges == 0
+      redirect_to root_url, notice: "No estas autorizado para alterar este tipo de datos" if @comment.nil?
     end
+  end
 
   private
 

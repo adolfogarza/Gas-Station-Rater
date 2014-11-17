@@ -1,12 +1,12 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:600);
 
-$body-bg:                                                   #ecf0f1;
-$font-family-sans-serif:                'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$navbar-height:                                        45px;
-$navbar-default-bg:                          white;
-$navbar-default-brand-color:      #3c9cdc;
-$brand-primary:                                    #2ecc71;
-$jumbotron-bg:                                         white;
+$body-bg: #ecf0f1;
+$font-family-sans-serif:  'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$navbar-height: 45px;
+$navbar-default-bg: white;
+$navbar-default-brand-color:  #3c9cdc;
+$brand-primary: #2ecc71;
+$jumbotron-bg:  white;
 
 @import 'bootstrap';
 @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
@@ -15,45 +15,40 @@ $jumbotron-bg:                                         white;
   width: 400px;
 }
 
-.edit_comment {
-  width: 900px;
-}
-
 .navbar-form .form-control {
-    display: inline-block;
-    width: 100%;
-    vertical-align: middle;
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
 }
 .navbar-form {
     overflow: auto;
 }
 .navbar-form .form-group {
-    display: inline;
+  display: inline;
 }
 
 .main-container{
-    width: 1000 px;
+  width: 1000 px;
 }
 .my-information{
-   float: left;
-   width: 25%;
-   margin-right: 5px;
+  float: left;
+  width: 25%;
+  margin-right: 5px;
 }
 .recent-comments{
-   float: left;
-   width: 45%;
-   margin-right: 5px;
-   margin-left: 5px;
-
+  float: left;
+  width: 45%;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 .top-stations{
-   margin-left: 5px;
-   float: left;
-   width: 25%;
+  margin-left: 5px;
+  float: left;
+  width: 25%;
 }
 
 .center {
-     text-align: center;
+  text-align: center;
 }
 
 .left{
@@ -61,30 +56,27 @@ $jumbotron-bg:                                         white;
 }
 
 .navbar-brand {
-     font-weight: bold;
+  font-weight: bold;
 }
 
 
 .mypanel {
-    width: 350px;
-    
+  width: 350px;
 }
 
 .commentBox {
-    padding-bottom: 0px;
-    margin: 0px;
-
+  padding-bottom: 0px;
+  margin: 0px;
 }
 
 .showCapitalized{
-    text-transform: capitalize;
+  text-transform: capitalize;
 }
 
 .basicInformation{
-    width: 50%;
-    float: left;
-    border-left: medium solid #2980b9;
-
+  width: 50%;
+  float: left;
+  border-left: medium solid #2980b9;
 }
 
 .ratingInformation{
@@ -92,33 +84,30 @@ $jumbotron-bg:                                         white;
 }
 
 .commentpanel {
-    height: 200px;
+    height: 240px;
     opacity: 0.95;
 }
 
 
 body {  
-    background-image: url("/assets/pumping_gas.jpg");
-    background-repeat: no-repeat;
-    background-color: #ecf0f1;
-    -webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+  background-image: url("/assets/pumping_gas.jpg");
+  background-repeat: no-repeat;
+  background-color: #ecf0f1;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
-th {
-    
-    font-size: 85%;
-    padding: 10px;
-
+th {  
+  font-size: 85%;
+  padding: 10px;
 }
 
 td { 
-    padding: 10px;
+  padding: 10px;
 }
 
 hr { 
-
-    margin: 8px 0 8px 0;
+  margin: 8px 0 8px 0;
 }

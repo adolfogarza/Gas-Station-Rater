@@ -1,0 +1,10 @@
+<div class="panel-heading" align="center"> Panel de <%= current_user.name.humanize if current_user %> </div>
+<br>
+<ul style="list-style-type:none">
+	<li><h3> Configuraci&oacute;n de la cuenta </h3></li>
+	<% if current_user.privileges == 1 %>
+		<li><h3> <%= link_to 'Crear Sucursal [Admin]', new_station_path %> </h3></li>
+		<li><h3> <%= link_to 'Listar Comentarios [Admin]', comments_path %> </h3></li>
+	<% else %>
+	<% end %>
+</ul>

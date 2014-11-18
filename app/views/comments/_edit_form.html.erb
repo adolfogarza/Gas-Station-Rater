@@ -9,40 +9,40 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.label t('views.comments.title') %><br>
+    <%= f.label :title, t('views.comments.create.title').html_safe %><br>
     <%= f.text_field :title, class: "form-control"%>
   </div>
   <div class="field">
-    <%= f.label t('views.comments.description') %><br>
+    <%= f.label :description, t('views.comments.create.description').html_safe %><br>
     <%= f.text_area :description, class: "form-control"%>
   </div>
   <br>
-  <%= f.fields_for :rating do |jj| %>
-    <%= jj.label "Honestidad: " %><br>
-    <div class="field">
-      <%= jj.hidden_field :honesty,:id=>"honesty_field" %>
-    </div>
-    <div id="honesty_star"></div>
-    <%= jj.label "Velocidad de Servicio: " %><br>
-    <div class="field">
-    <%= jj.hidden_field :speed_service,:id=>"speed_field" %>
-    </div>
-    <div id="speed_star"></div>
-    <%= jj.label "Atencion al Cliente: " %><br>
-    <div class="field">
-    <%= jj.hidden_field :customer_service,:id=>"customer_field" %>
-    </div>
-    <div id="customer_star"></div>
-
-  <% end %>
-  <br>
-  <div class="actions" align="right">
-    <%= f.button t("Editar Comentario"), class: "btn btn-primary"%>
+  <div align="center">
+    <%= f.fields_for :rating do |jj| %>
+      <%= jj.label :honesty, t('views.stations.show.honesty') %><br>
+      <div class="field">
+        <%= jj.hidden_field :honesty,:id=>"honesty_field" %>
+      </div>
+      <div id="honesty_star"></div>
+      <hr>
+      <%= jj.label :speed_service, t('views.stations.show.speed') %><br>
+      <div class="field">
+      <%= jj.hidden_field :speed_service,:id=>"speed_field" %>
+      </div>
+      <div id="speed_star"></div>
+      <hr>
+      <%= jj.label :customer_service, t('views.stations.show.customer') %><br>
+      <div class="field">
+      <%= jj.hidden_field :customer_service,:id=>"customer_field" %>
+      </div>
+      <div id="customer_star"></div>
+      <hr>
+    <% end %>
   </div>
   <br>
-  <hr>  
-    <%= link_to 'Ver Comentario', @comment %> |
-    <%= link_to 'Regresar', root_path %>
+  <div class="actions" align="right">
+    <%= f.button t('views.comments.edit.submit_button'), class: "btn btn-primary"%>
+  </div>
 <% end %>
 </div>
 

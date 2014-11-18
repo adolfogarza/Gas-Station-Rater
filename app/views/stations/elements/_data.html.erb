@@ -1,0 +1,19 @@
+<p>
+  <strong><%= t('views.stations.show.name').html_safe %></strong>
+  <%= @station.legal_name.titleize %>
+</p>
+<hr>
+<p>
+  <strong><%= t('views.stations.show.address').html_safe %></strong>
+  <%= @station.location.address.titleize %>
+</p>
+<p>
+<hr>
+  <strong><%= t('views.stations.show.latitude').html_safe %></strong>
+  <%= @station.location.latitude %>
+</p>
+<hr>
+<p>
+  <strong><%= t('views.stations.show.longitude').html_safe %></strong>
+  <%= @station.location.longitude %>
+</p>

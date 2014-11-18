@@ -11,20 +11,20 @@
   <% end %>
   <%= f.hidden_field :station_id, value: @station.id %>
   <div class="field">
-    <%= f.label t('views.comments.title') %><br>
+    <%= f.label :title, t('views.comments.create.title').html_safe %><br>
     <%= f.text_field :title, class: "form-control"%>
   </div>
   <div class="field">
-    <%= f.label t('views.comments.description') %><br>
+    <%= f.label :description, t('views.comments.create.description').html_safe %><br>
     <%= f.text_area :description, class: "form-control"%>
   </div>
   <% @comment.build_rating %>
   <table align="center">
     <thead>
       <tr>
-        <th><%= t('views.stations.honesty') %></th>
-        <th><%= t('views.stations.speed') %></th>
-        <th><%= t('views.stations.customer') %></th>
+        <th><%= t('views.comments.create.honesty').html_safe %></th>
+        <th><%= t('views.comments.create.speed').html_safe %></th>
+        <th><%= t('views.comments.create.customer').html_safe %></th>
       </tr>
     </thead>
     <tbody>
@@ -55,7 +55,7 @@
   </table>
   <hr>
   <div class="actions" align="right">
-    <%= f.button t('views.comments.submit'), class: "btn btn-primary"%>
+    <%= f.button t('views.comments.create.submit_button').html_safe, class: "btn btn-primary"%>
   </div>
 <% end %>
 <script>

@@ -1,16 +1,23 @@
-<div class="panel-heading" align="center"> Top 5 Gasolineras </div>
-<table align="center">
+<div class="panel-heading" align="center"> <%= t('views.pages.main.content.top_stations.page_title') %> </div>
+<table align="center" class="table">
 	<thead>
 		<tr>
+			<th>Perfil</th>
 			<th>Sucursal</th>
 			<th>Puntuaci&oacute;n</th>
+
 		</tr>
 	</thead>
 	<tbody>
 		<% @top_stations.each do |station| %>
-			<% @station_name = station.legal_name %>
+			<% @station_name = truncate station.legal_name, length: 35 %>
 			<tr>
-				<td><%= link_to @station_name.titleize, station%></td>
+				<td>
+					<%= link_to station, class: "btn btn-info" do %>
+						<i class="glyphicon glyphicon-share-alt"></i>
+					<% end %>
+				</td>
+				<td><%= @station_name.titleize%></td>
 				<td><%= station.counter_honesty + station.counter_customer_service + station.counter_speed_service %></td>
 			</tr>
 		<% end %>

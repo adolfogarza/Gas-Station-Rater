@@ -1,11 +1,11 @@
 <div class="panel panel-default center-block">
-<div class="panel-heading" align="center">Lista de Comentarios</div>
+<div class="panel-heading" align="center"><%= t('views.comments.index.page_title').html_safe %></div>
   <div class="panel-body"> 
-<table>
+<table style="width:100%" class="table">
   <thead>
     <tr>
       <th>Titulo</th>
-      <th>Descripcion</th>
+      <th>Descripci&oacute;n</th>
       <th>Usuario</th>
       <th>Acciones</th>
     </tr>
@@ -14,20 +14,30 @@
     <% @comments.each do |comment| %>
       <tr>
         <td><%= comment.title %></td>
-        <td><%= comment.description %></td>
+        <% @comment_description = truncate comment.description.humanize, length: 50 %>
+        <td><%= @comment_description %></td>
         <td><%= comment.user.name if comment.user %></td>
-        <td><%= link_to 'Ver', comment %></td>
-        <% if comment.user == current_user || current_user.privileges == 1 %>
-        <td><%= link_to 'Editar', edit_comment_path(comment) %></td>
-        <td><%= link_to 'Borrar', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% else %>
-        <% end %>
+        <td>
+          <%= link_to comment, class: "btn btn-default" do %>
+            <i class="glyphicon glyphicon-eye-open"></i>
+          <% end %>
+          <% if comment.user == current_user || current_user.privileges == 1 %>
+            <%= link_to edit_comment_path(comment), class: "btn btn-default" do %>
+                <i class="glyphicon glyphicon-pencil"></i>
+            <% end %>
+            <%= link_to comment, method: :delete, data: { confirm: t('views.messages.deletion').html_safe }, class: "btn btn-default" do %>
+                <i class="glyphicon glyphicon-trash"></i>
+            <% end %>
+          <% else %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<br>
+  <br>
+  <hr>
+  <%= link_to t('views.comments.index.download_csv').html_safe, comments_path(format: :csv), class: "btn btn-primary" %>  
   </div>
-<%= link_to 'Descargar lista en csv', comments_path(format: :csv) %>  
 </div>
 <%= paginate @comments %>

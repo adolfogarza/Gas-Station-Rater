@@ -1,9 +1,9 @@
-class User < ActiveRecord::Base
-  
-  attr_accessor :password
-
+class User < ActiveRecord::Base  
   #associations
   has_many :comments
+
+  #virtual variables
+  attr_accessor :password
 
   #callbacks
   before_save :encrypt_password #antes de guardar el usuario a la base de datos, ejecuta el metodo encrypt_password.

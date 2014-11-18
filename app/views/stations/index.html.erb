@@ -14,12 +14,20 @@
           <tr>
             <td><%= station.legal_name.titleize %></td>
             <td><%= station.location.address.titleize %></td>
-            <td><%= link_to 'Ver Perfil', station %></td>
-            <% if current_user.privileges == 1 %>
-              <td><%= link_to 'Editar', edit_station_path(station) %></td>
-              <td><%= link_to 'Borrar', station, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% else %>
-            <% end %>
+            <td>
+              <%= link_to station, class: "btn btn-default" do %>
+                <i class="glyphicon glyphicon-eye-open"></i>
+              <% end %>
+              <% if current_user.privileges == 1 %>
+                <%= link_to edit_station_path(station), class: "btn btn-default" do %>
+                    <i class="glyphicon glyphicon-pencil"></i>
+                <% end %>
+                <%= link_to station, method: :delete, data: { confirm: t('views.messages.deletion').html_safe }, class: "btn btn-default" do %>
+                    <i class="glyphicon glyphicon-trash"></i>
+                <% end %>
+              <% else %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>

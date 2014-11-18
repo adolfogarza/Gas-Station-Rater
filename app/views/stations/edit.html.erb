@@ -1,8 +1,8 @@
 <div class="panel panel-default center-block create_station">
-	<div class="panel-heading" align="center">Editar Sucursal</div>
+	<div class="panel-heading" align="center"><%= t('views.stations.edit.page_title').html_safe %></div>
 	<div class="panel-body" align="center"> 
 		<%= render partial:'form' %>
-		<%= link_to 'Ver Perfil', @station %> |
-		<%= link_to 'Regresar', stations_path %>
+		<%= link_to t('views.generic.view').html_safe, @station %> |
+		<%= link_to t('views.generic.return').html_safe, stations_path %>
 	</div>
 </div>

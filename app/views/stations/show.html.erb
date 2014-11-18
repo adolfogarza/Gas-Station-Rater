@@ -1,231 +1,24 @@
 <div class="panel panel-default center-block">
-  <div class="panel-heading" align="center">Informaci&oacute;n B&aacute;sica</div>
+  <div class="panel-heading" align="center"><%= t('views.stations.show.basic_data').html_safe %></div>
   <div class="panel-body showCapitalized basicInformation"> 
-    <p>
-      <strong><%= t('views.stations.name') %></strong>
-      <%= @station.legal_name.titleize %>
-    </p>
-    <hr>
-    <p>
-      <strong><%= t('views.stations.address') %></strong>
-      <%= @station.location.address.titleize %>
-    </p>
-    <p>
-    <hr>
-      <strong><%= t('views.stations.latitude') %></strong>
-      <%= @station.location.latitude %>
-    </p>
-    <hr>
-    <p>
-      <strong><%= t('views.stations.longitude') %></strong>
-      <%= @station.location.longitude %>
-    </p>
+    <%= render partial:'stations/elements/data' %>
   </div>
   <div class="panel-body ratingInformation">
-    <p>
-      <strong><%= t('views.stations.average_honesty') %></strong>
-      <% unless @station.counter_comments.nil?%>
-        <% if @station.counter_comments == 0 %>
-        <% else %>
-          <%= (@station.counter_honesty/@station.counter_comments) %> / 5
-        <% end %>
-      <% end %>
-    </p>
-    <p>
-    <hr>
-      <strong><%= t('views.stations.average_speed') %></strong>
-      <% unless @station.counter_comments.nil?%>
-        <% if @station.counter_comments == 0 %>
-        <% else %>
-          <%= (@station.counter_speed_service/@station.counter_comments) %> / 5
-        <% end %>
-      <% end %>
-    </p>
-    <p>
-    <hr>
-      <strong><%= t('views.stations.average_customer') %></strong>
-      <% unless @station.counter_comments.nil?%>
-        <% if @station.counter_comments == 0 %>
-        <% else %>
-          <%= (@station.counter_customer_service/@station.counter_comments) %> / 5
-        <% end %>
-      <% end %>
-    </p>
-    <hr>
-    <%= link_to 'Generar Reporte en PDF', station_path(@station, :format => :pdf), class: "btn btn-primary" %>
+    <%= render partial:'stations/elements/rating' %>
   </div>
   <hr>
   <div class="panel panel-default">
-  <div class="panel-heading" align="center">Desempe&ntilde;o en tiempo real</div>
-
-  <% honesty = {} %>
-  <% customer_service = {} %>
-  <% speed_service = {} %>
-  <% Rating.get_station_ratings(@station.id).each do |r| %>
-    <% honesty[r.created_at] = r.honesty %>
-    <% customer_service[r.created_at] = r.customer_service %>
-    <% speed_service[r.created_at] = r.speed_service %>
-  <% end %>
-
-  <div id="highcharts" style="width='100%' height:200px;"></div>
-
-  <script  type='text/javascript'>
-    $(function () {
-      $('#highcharts').highcharts({
-        chart: {
-          zoomType: 'x'
-        },
-        title: {
-          text: ''
-        },
-        tooltip: {
-          valueSuffix: ' Puntos'
-        },
-        legend: {
-          layout: 'vertical',
-          align: 'right',
-          verticalAlign: 'middle',
-          borderWidth: 0
-        },
-        xAxis: {
-          categories: <%= (honesty.map{ |key, value| key.to_formatted_s(:short) }).to_json.html_safe %>
-        },
-        yAxis: {
-          title: {
-            text: 'Rating'
-          }
-        },
-        series: [
-          {
-            name: 'Honestidad',
-            data: <%= (honesty.map{ |key, value| value }).to_json.html_safe %>
-          },
-          {
-            name: 'Atencion al cliente',
-            data: <%= (customer_service.map{ |key, value| value }).to_json.html_safe %>
-          },
-          {
-            name: 'Velocidad del servicio',
-            data: <%= (speed_service.map{ |key, value| value }).to_json.html_safe %>
-          }
-        ]
-      });
-    });
-  </script>
-
+  <div class="panel-heading" align="center"><%= t('views.stations.show.realtime_performance').html_safe %></div>
+    <%= render partial:'stations/elements/charts' %>
   </div>
   <div class="panel panel-default">
-    <div class="panel-heading" align="center">Mapa</div>
-    <div class="googleMaps" id="map" style='width: 100%; height: 300px;'></div>
-    <br>
-  </div>
-  <script type="text/javascript">
-      handler = Gmaps.build('Google');
-      handler.buildMap({ provider: {  disableDefaultUI: true , maxZoom: 16, draggable:true}, 
-      internal: {id: 'map'}}, function(){
-        markers = handler.addMarkers(<%=raw @coordinates.to_json %>);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-      });
-  </script>
+    <div class="panel-heading" align="center"><%= t('views.stations.show.map').html_safe %></div>
+      <%= render partial:'stations/elements/map' %>
+    </div>
 </div>
 <div class="panel panel-default center-block">
   <div class="panel-body commentBox"> 
     <%= render partial:'comments/form' %>
   </div>
 </div>
-<% @pagecomments.each do |station| %>
-<div class="panel panel-default commentpanel center-block">
-  <div class="panel-body">
-    <div class="comment-content">
-
-      <% if station.rating.honesty == 1%>
-      <% @honesty_class = 'rating onestar'%>
-      <% elsif station.rating.honesty == 2%>
-      <% @honesty_class = 'rating twostar'%>
-      <% elsif station.rating.honesty == 3%>
-      <% @honesty_class = 'rating threestar'%>
-      <% elsif station.rating.honesty == 4%>
-      <% @honesty_class = 'rating fourstar'%>
-      <% elsif station.rating.honesty == 5%>
-      <% @honesty_class = 'rating fivestar'%>
-      <% end %>
-
-      <% if station.rating.speed_service == 1%>
-      <% @speed_class = 'rating onestar'%>
-      <% elsif station.rating.speed_service == 2%>
-      <% @speed_class = 'rating twostar'%>
-      <% elsif station.rating.speed_service == 3%>
-      <% @speed_class = 'rating threestar'%>
-      <% elsif station.rating.speed_service == 4%>
-      <% @speed_class = 'rating fourstar'%>
-      <% elsif station.rating.speed_service == 5%>
-      <% @speed_class = 'rating fivestar'%>
-      <% end %>
-
-      <% if station.rating.customer_service == 1%>
-      <% @customer_class = 'rating onestar'%>
-      <% elsif station.rating.customer_service == 2%>
-      <% @customer_class = 'rating twostar'%>
-      <% elsif station.rating.customer_service == 3%>
-      <% @customer_class = 'rating threestar'%>
-      <% elsif station.rating.customer_service == 4%>
-      <% @customer_class = 'rating fourstar'%>
-      <% elsif station.rating.customer_service == 5%>
-      <% @customer_class = 'rating fivestar'%>
-      <% end %>
-
-      <p><center>"<%= station.title %>"</center></p>
-      <hr>
-      <p> <center><font color="#2c3e50"><%= station.user.name %> <%=station.user.lastname %></font> opino: &nbsp; <%= station.description %></center> </p>
-      <hr>
-      <% if station.user == current_user || current_user.privileges == 1 %>
-        <p align="center"><%= link_to 'Borrar Comentario', station, method: :delete, data: { confirm: 'Estas seguro?' } %> | <%= link_to 'Editar Comentario', edit_comment_path(station)%></p>
-        <hr>
-      <% else %>
-      <% end %>
-      <table align="center">
-        <thead>
-           <tr>
-              <th><%= t('views.stations.honesty') %></th>
-              <th><%= t('views.stations.speed') %></th>
-              <th><%= t('views.stations.customer') %></th>
-           </tr>
-        </thead>
-          <tbody>
-            <tr>
-              <td align="left">
-                <ul class="<%= @honesty_class%>">
-                  <li class="one"><a  title="1 Estrella">1</a></li>
-                  <li class="two"><a  title="2 Estrellas">2</a></li>
-                  <li class="three"><a title="3 Estrellas">3</a></li>
-                  <li class="four"><a  title="4 Estrellas">4</a></li>
-                  <li class="five"><a  title="5 Estrellas">5</a></li>
-                </ul>
-              </td>
-              <td align="center" >
-                <ul class="<%= @speed_class%>">
-                  <li class="one"><a  title="1 Estrella">1</a></li>
-                  <li class="two"><a  title="2 Estrellas">2</a></li>
-                  <li class="three"><a title="3 Estrellas">3</a></li>
-                  <li class="four"><a  title="4 Estrellas">4</a></li>
-                  <li class="five"><a  title="5 Estrellas">5</a></li>
-                </ul>
-              </td>
-              <td>
-                <ul class="<%= @customer_class%>">
-                  <li class="one"><a  title="1 Estrella">1</a></li>
-                  <li class="two"><a  title="2 Estrellas">2</a></li>
-                  <li class="three"><a title="3 Estrellas">3</a></li>
-                  <li class="four"><a  title="4 Estrellas">4</a></li>
-                  <li class="five"><a  title="5 Estrellas">5</a></li>
-                </ul>
-              </td>
-             </tr>
-          </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-<% end %>
-<%= paginate @pagecomments %>
+<%= render partial:'stations/elements/comments' %>

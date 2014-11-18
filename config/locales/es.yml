@@ -1,8 +1,97 @@
 es:
   views:
-    paginas:
-        title: '¡Bienvenido a Gasolina Segura!'
-        motto: 'Un sistema que te permite calificar la calidad de servicio que recibes en las diferentes sucursales'
-        message: '¡Abre una cuenta ahora y comienza a califica'
-        login: 'Iniciar sesión'
-        sign_up: 'Abre una cuenta'
+    pages:
+      main:
+        promo:
+          title: '¡Bienvenido a Gasolina Segura!'
+          motto: 'Un sistema que te permite calificar la calidad de servicio que recibes en las diferentes sucursales'
+          message: '¡Abre una cuenta ahora y comienza a califica'
+          login: 'Iniciar sesión'
+          sign_up: 'Abre una cuenta'
+        content:
+          recent_comments: 
+            page_title: 'Comentarios Recientes'
+          top_stations: 
+            page_title: 'Top 5 Gasolineras'
+            station: 'Sucursal'
+            score: 'Puntuaci&oacute;n'
+          user_information: 
+            page_title: 'Panel de '
+            create_station: 'Crear Sucursal [admin]'
+            list_comments: 'Ver Comentarios [admin]'
+            account_details: 'Configuraci&oacute;n de la cuenta'
+    stations:
+      show:
+        basic_data: 'Informaci&oacute;n B&aacute;sica'
+        realtime_performance: 'Desempe&ntilde;o en tiempo real'
+        map: 'Mapa'
+        name: 'Raz&oacute;n Social: '
+        address: 'Direcci&oacute;n: '
+        latitude: 'Latitud: '
+        longitude: 'Longitud: '
+        create_comment: 'Deja tu opini&oacute;n:'
+        average_honesty: 'Honestidad Promedio: '
+        average_speed: 'Velocidad Promedio: '
+        average_customer: 'Atenci&oacute;n al Cliente Promedio: '
+        generate_pdf: 'Generar Reporte en PDF'
+        honesty: 'Honestidad'
+        speed: 'Velocidad del servicio'
+        customer: 'Atención al cliente'
+        delete_comment: 'Borrar Comentario'
+        edit_comment: 'Editar Comentario'
+        user_said: 'Opino: '
+      create:
+        page_title: 'Dar de alta una sucursal'
+        name: 'Raz&oacute;n Social de la Sucursal'
+        address: 'Direcci&oacute;n de la Sucursal'
+        submit_button: 'Dar de alta'
+      edit:
+        page_title: 'Editar Sucursal'
+      pdf:
+        honesty_performance: 'Desempe&ntilde;o de Honestidad: '
+        customer_performance: 'Desempe&ntilde;o de Servicio al cliente: '
+        speed_performance: 'Desempe&ntilde;o de Velocidad del servicio: '
+        generated: 'Reporte generado el: '
+        by: 'Por el usuario: '
+    comments:
+      index:
+        page_title: 'Lista de Comentarios'
+        download_csv: 'Descargar lista en CSV'
+      create:
+        submit_button: 'Comentar Ahora'
+        title: 'T&iacute;tulo: '
+        description: 'Descripci&oacute;n: '
+        honesty: 'Honestidad'
+        speed: 'Velocidad del servicio'
+        customer: 'Atención al cliente'
+      edit:
+        page_title: 'Editar Comentario'
+        submit_button: 'Editar Comentario'
+    users:
+      create:
+        page_title: 'Abre una cuenta'
+        name: 'Nombre'
+        lastname: 'Primer Apellido'
+        email: 'Correo Electr&oacute;nico'
+        password: 'Contrase&ntilde;a'
+        submit_button: '¡Registrar Cuenta!'
+    sessions:
+      create:
+        page_title: 'Iniciar Sesi&oacute;n'
+        email: 'Correo Electr&oacute;nico'
+        password: 'Contrase&ntilde;a'
+        submit_button: 'Iniciar sesi&oacute;n'
+    navbar:
+      brand: 'Gasolina Segura'
+      sign_up: 'Registrarse'
+      login: 'Iniciar sesi&oacute;n'
+      logout: 'Cerrar sesi&oacute;n'
+      placeholder: 'Escribe el nombre de la gasolinera que deseas buscar'
+    messages:
+      deletion: '¿Est&aacute;s seguro?'
+    generic:
+      return: 'Regresar'
+      view: 'Ver'
+      edit: 'Editar'
+      delete: 'Borrar'
+      site_title: 'Gasolina Segura'

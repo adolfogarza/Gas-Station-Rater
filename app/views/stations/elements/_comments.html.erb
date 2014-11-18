@@ -1,0 +1,99 @@
+<% @pagecomments.each do |station| %>
+<div class="panel panel-default commentpanel center-block">
+  <div class="panel-body">
+    <div class="comment-content">
+      <% if station.rating.honesty == 1%>
+      <% @honesty_class = 'rating onestar'%>
+      <% elsif station.rating.honesty == 2%>
+      <% @honesty_class = 'rating twostar'%>
+      <% elsif station.rating.honesty == 3%>
+      <% @honesty_class = 'rating threestar'%>
+      <% elsif station.rating.honesty == 4%>
+      <% @honesty_class = 'rating fourstar'%>
+      <% elsif station.rating.honesty == 5%>
+      <% @honesty_class = 'rating fivestar'%>
+      <% end %>
+      <% if station.rating.speed_service == 1%>
+      <% @speed_class = 'rating onestar'%>
+      <% elsif station.rating.speed_service == 2%>
+      <% @speed_class = 'rating twostar'%>
+      <% elsif station.rating.speed_service == 3%>
+      <% @speed_class = 'rating threestar'%>
+      <% elsif station.rating.speed_service == 4%>
+      <% @speed_class = 'rating fourstar'%>
+      <% elsif station.rating.speed_service == 5%>
+      <% @speed_class = 'rating fivestar'%>
+      <% end %>
+      <% if station.rating.customer_service == 1%>
+      <% @customer_class = 'rating onestar'%>
+      <% elsif station.rating.customer_service == 2%>
+      <% @customer_class = 'rating twostar'%>
+      <% elsif station.rating.customer_service == 3%>
+      <% @customer_class = 'rating threestar'%>
+      <% elsif station.rating.customer_service == 4%>
+      <% @customer_class = 'rating fourstar'%>
+      <% elsif station.rating.customer_service == 5%>
+      <% @customer_class = 'rating fivestar'%>
+      <% end %>
+      <p><center>"<%= station.title %>"</center></p>
+      <hr>
+      <p> <center><font color="#2c3e50"><%= station.user.name %> <%=station.user.lastname %></font> <%= t('views.stations.show.user_said').html_safe %><%= station.description %></center> </p>
+      <hr>
+      <% if station.user == current_user || current_user.privileges == 1 %>
+        <div align="center">
+          <%= link_to edit_comment_path(station), class: "btn btn-default" do %>
+              <i class="glyphicon glyphicon-pencil"></i>
+          <% end %>
+          
+          <%= link_to station, method: :delete, data: { confirm: t('views.messages.deletion').html_safe }, class: "btn btn-default" do %>
+              <i class="glyphicon glyphicon-trash"></i>
+          <% end %>
+        </div>
+        <hr>
+      <% else %>
+      <% end %>
+      <table align="center">
+        <thead>
+           <tr>
+              <th><%= t('views.stations.show.honesty').html_safe %></th>
+              <th><%= t('views.stations.show.speed').html_safe %></th>
+              <th><%= t('views.stations.show.customer').html_safe %></th>
+           </tr>
+        </thead>
+          <tbody>
+            <tr>
+              <td align="left">
+                <ul class="<%= @honesty_class%>">
+                  <li class="one"><a  title="1 Estrella">1</a></li>
+                  <li class="two"><a  title="2 Estrellas">2</a></li>
+                  <li class="three"><a title="3 Estrellas">3</a></li>
+                  <li class="four"><a  title="4 Estrellas">4</a></li>
+                  <li class="five"><a  title="5 Estrellas">5</a></li>
+                </ul>
+              </td>
+              <td align="center" >
+                <ul class="<%= @speed_class%>">
+                  <li class="one"><a  title="1 Estrella">1</a></li>
+                  <li class="two"><a  title="2 Estrellas">2</a></li>
+                  <li class="three"><a title="3 Estrellas">3</a></li>
+                  <li class="four"><a  title="4 Estrellas">4</a></li>
+                  <li class="five"><a  title="5 Estrellas">5</a></li>
+                </ul>
+              </td>
+              <td>
+                <ul class="<%= @customer_class%>">
+                  <li class="one"><a  title="1 Estrella">1</a></li>
+                  <li class="two"><a  title="2 Estrellas">2</a></li>
+                  <li class="three"><a title="3 Estrellas">3</a></li>
+                  <li class="four"><a  title="4 Estrellas">4</a></li>
+                  <li class="five"><a  title="5 Estrellas">5</a></li>
+                </ul>
+              </td>
+             </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<% end %>
+<%= paginate @pagecomments %>

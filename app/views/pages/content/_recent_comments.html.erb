@@ -1,13 +1,19 @@
 <div class="panel panel-default">
-	<div class="panel-heading" align="center">Comentarios Recientes</div>
+	<div class="panel-heading" align="center"><%= t('views.pages.main.content.recent_comments.page_title') %></div>
 </div>
-
 <% @recent_comments.each do |comment| %>
 	<div class="panel panel-default">
-		<br>
-		<p align="center"><%= comment.station.legal_name.titleize if comment.station%></p>
-		<% @comment_description = truncate comment.description.humanize, length: 70 %>
+    <div align="center">
+      <div align="right">
+        <%= link_to comment.station, class: "btn btn-default" do %>
+          <i class="glyphicon glyphicon-eye-open"></i>
+        <% end %>
+      </div>
+      <hr>
+      <b><%= comment.station.legal_name.titleize if comment.station%></b>
+    </div>    
+		<% @comment_description = truncate comment.description.humanize, length: 50 %>
 		<hr>
-		<p align="center">"<%= link_to @comment_description, comment%>"</p>
+		<p align="center">"<%= @comment_description %>"</p>
 	</div>
 <% end %>

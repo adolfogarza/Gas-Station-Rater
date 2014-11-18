@@ -1,0 +1,31 @@
+<p>
+  <strong><%= t('views.stations.show.average_honesty').html_safe %></strong>
+  <% unless @station.counter_comments.nil?%>
+    <% if @station.counter_comments == 0 %>
+    <% else %>
+      <%= (@station.counter_honesty/@station.counter_comments) %> / 5
+    <% end %>
+  <% end %>
+</p>
+<p>
+<hr>
+  <strong><%= t('views.stations.show.average_speed').html_safe %></strong>
+  <% unless @station.counter_comments.nil?%>
+    <% if @station.counter_comments == 0 %>
+    <% else %>
+      <%= (@station.counter_speed_service/@station.counter_comments) %> / 5
+    <% end %>
+  <% end %>
+</p>
+<p>
+<hr>
+  <strong><%= t('views.stations.show.average_customer').html_safe %></strong>
+  <% unless @station.counter_comments.nil?%>
+    <% if @station.counter_comments == 0 %>
+    <% else %>
+      <%= (@station.counter_customer_service/@station.counter_comments) %> / 5
+    <% end %>
+  <% end %>
+</p>
+<hr>
+<%= link_to t('views.stations.show.generate_pdf').html_safe, station_path(@station, :format => :pdf), class: "btn btn-primary" %>

@@ -1,8 +1,8 @@
 <div class="panel panel-default center-block create_station">
-<div class="panel-heading" align="center">Dar de alta una sucursal</div>
+<div class="panel-heading" align="center"><%= t('views.stations.create.page_title').html_safe %></div>
 	<div class="panel-body" align="center"> 		
 		<%= render 'form' %>
 		<hr>
-		<%= link_to 'Regresar', root_path %>
+		<%= link_to t('views.generic.return').html_safe, root_path %>
 	</div>
 </div>

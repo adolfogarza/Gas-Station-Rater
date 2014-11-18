@@ -1,10 +1,10 @@
-<div class="panel-heading" align="center"> Panel de <%= current_user.name.humanize if current_user %> </div>
-<br>
-<ul style="list-style-type:none">
-	<li><h3> Configuraci&oacute;n de la cuenta </h3></li>
+<div class="panel-heading" align="center"> <%= t('views.pages.main.content.user_information.page_title') %> <%= current_user.name.humanize if current_user %> </div>
+
+<ul class="nav nav-pills nav-stacked" align="center">
+  <li><%= link_to t('views.pages.main.content.user_information.account_details').html_safe, comments_path%></li>
 	<% if current_user.privileges == 1 %>
-		<li><h3> <%= link_to 'Crear Sucursal [Admin]', new_station_path %> </h3></li>
-		<li><h3> <%= link_to 'Listar Comentarios [Admin]', comments_path %> </h3></li>
+		<li><%= link_to t('views.pages.main.content.user_information.create_station').html_safe, new_station_path%></li>
+		<li><%= link_to t('views.pages.main.content.user_information.list_comments').html_safe, comments_path%></li> 
 	<% else %>
 	<% end %>
 </ul>

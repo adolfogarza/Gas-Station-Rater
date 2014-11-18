@@ -9,18 +9,18 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.label :legal_name, 'Razón Social de la Sucursal' %><br>
+    <%= f.label :legal_name, t('views.stations.create.name').html_safe %><br>
     <%= f.text_field :legal_name %>
   </div>
   <br>
   <%= f.fields_for :location do |ff| %>
     <div class="field">
-      <%= ff.label :address, "Dirección de la Sucursal" %><br>
+      <%= ff.label :address, t('views.stations.create.address').html_safe %><br>
       <%= ff.text_field :address %>
     </div>
   <% end %>
   <br>
   <div class="actions">
-    <%= f.button t('Dar de alta'), class: "btn btn-primary" %>
+    <%= f.button t('views.stations.create.submit_button').html_safe, class: "btn btn-primary" %>
   </div>
 <% end %>

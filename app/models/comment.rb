@@ -12,6 +12,7 @@ class Comment < ActiveRecord::Base
 	scope :select_comment, ->{ select "id" }
 	scope :filter_by_station, ->(values){ where(station_id: values) }
 
+	#methods
 	def self.find_by_station(station_id)
 		select_comment.filter_by_station(station_id)
 	end

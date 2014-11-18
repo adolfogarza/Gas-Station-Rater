@@ -1,31 +1,44 @@
 <div class="panel panel-default center-block create_station">
 	<div class="panel-heading" align="center">Comentario de <%= @comment.user.name %></div>
-	<div class="panel-body" align="center"> 
-<p id="notice"><%= notice %></p>
-<p>
-  <strong>Sucursal: </strong>
-  <%= @comment.station.legal_name %>
-</p>
-<p>
-  <strong>Usuario: </strong>
-  <%= @comment.user.name %> <%=@comment.user.lastname %>
-</p>
-<p>
-  <strong>Creado: </strong>
-  <%= @comment.created_at %> 
-</p>
-<hr>
-<p>
-  <strong>Titulo: </strong>
-  <%= @comment.title %>
-</p>
-<p>
- 	<strong>Descripci&oacute;n: </strong>
-  <%= @comment.description %>
-</p>
-<% if @comment.user == current_user || current_user.privileges == 1%>
-	<%= link_to 'Editar', edit_comment_path(@comment) %> |
-<% end %>
-<%= link_to 'Regresar', root_path %>
-</div>
+	<div class="panel-body"> 
+
+    <p>
+      <strong>Sucursal: </strong>
+      <%= @comment.station.legal_name %>
+    </p>
+    <p>
+      <strong>Usuario: </strong>
+      <%= @comment.user.name %> <%=@comment.user.lastname %>
+    </p>
+    <p>
+      <strong>Creado: </strong>
+      <%= @comment.created_at %> 
+    </p>
+
+    <p>
+      <strong>Titulo: </strong>
+      <%= @comment.title %>
+    </p>
+    <p>
+     	<strong>Descripci&oacute;n: </strong>
+      <%= @comment.description %>
+    </p>
+    <p>
+      <strong>Honestidad: </strong>
+      <%= @comment.rating.honesty %>
+    </p>
+    <p>
+      <strong>Velocidad: </strong>
+      <%= @comment.rating.speed_service %>
+    </p>
+    <p>
+      <strong>Atencion: </strong>
+      <%= @comment.rating.customer_service %>
+    </p>
+    <hr>
+    <% if @comment.user == current_user || current_user.privileges == 1%>
+    	<%= link_to 'Editar', edit_comment_path(@comment) %> |
+    <% end %>
+    <%= link_to 'Regresar', root_path %>
+  </div>
 </div>

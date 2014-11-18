@@ -1,6 +1,6 @@
 <div class="panel panel-default mypanel center center-block">
   <div class="panel-heading">
-    <h1>Abre una cuenta</h1>
+    <h1><%= t('views.users.create.page_title').html_safe %></h1>
   </div>
   <div class="panel-body"> 
     <%= form_for @user do |f| %>
@@ -14,22 +14,22 @@
         </div>
       <% end %>
       <p>
-        <%= f.label :Nombre %><br />
-        <%= f.text_field :name %>
+        <%= f.label :name, t('views.users.create.name').html_safe %><br />
+        <%= f.text_field :name, class: "form-control" %>
       </p>
       <p>
-        <%= f.label :Apellido %><br />
-        <%= f.text_field :lastname %>
+        <%= f.label :lastname, t('views.users.create.lastname').html_safe  %><br />
+        <%= f.text_field :lastname, class: "form-control" %>
       </p>
       <p>
-        <%= f.label :Correo_electrónico %><br />
-        <%= f.text_field :email %>
+        <%= f.label :email, t('views.users.create.email').html_safe %><br />
+        <%= f.text_field :email, class: "form-control" %>
       </p>
       <p>
-        <%= f.label :Contraseña %><br />
-        <%= f.password_field :password %>
+        <%= f.label :password, t('views.users.create.password').html_safe %><br />
+        <%= f.password_field :password, class: "form-control" %>
       </p>
-      <p class="button"><%= submit_tag "Registrar cuenta", class: "btn btn-primary" %></p>
+      <p class="button"><%= submit_tag t('views.users.create.submit_button').html_safe, class: "btn btn-primary" %></p>
     <% end %> 
   </div>
 </div>

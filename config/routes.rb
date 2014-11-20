@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get "log_out" => "sessions#destroy"
   get "log_in" => "sessions#new"
   get "sign_up" => "users#new"
+  get "account" => "users#edit"
+  get "delete" => "users#destroy"
+
   root "pages#homepage"
   
 end

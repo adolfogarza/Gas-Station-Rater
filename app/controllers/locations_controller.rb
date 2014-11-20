@@ -56,7 +56,7 @@ class LocationsController < ApplicationController
 
   def correct_user
     if current_user.privileges == 0
-      redirect_to root_url, notice: "No estas autorizado para modificar estaciones!" if @comment.nil?
+      redirect_to root_url, notice: "No estas autorizado" if @comment.nil?
     end
   end
 

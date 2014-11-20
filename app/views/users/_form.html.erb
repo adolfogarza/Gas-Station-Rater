@@ -1,0 +1,28 @@
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div class="error_messages left">     
+      <ul>
+        <% for message in @user.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= f.label :name, t('views.users.create.name').html_safe %><br />
+    <%= f.text_field :name, class: "form-control" %>
+  </p>  
+  <p>
+    <%= f.label :lastname, t('views.users.create.lastname').html_safe  %><br />
+    <%= f.text_field :lastname, class: "form-control" %>
+  </p>
+  <p>
+    <%= f.label :email, t('views.users.create.email').html_safe %><br />
+    <%= f.text_field :email, class: "form-control" %>
+  </p>
+  <p>
+    <%= f.label :password, t('views.users.create.password').html_safe %><br />
+    <%= f.password_field :password, class: "form-control" %>
+  </p>
+  <p class="button"><%= submit_tag t('views.users.create.submit_button').html_safe, class: "btn btn-primary" %></p>
+<% end %>

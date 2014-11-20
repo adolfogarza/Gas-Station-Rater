@@ -1,7 +1,8 @@
 <div class="panel-heading" align="center"> <%= t('views.pages.main.content.user_information.page_title') %> <%= current_user.name.humanize if current_user %> </div>
 
 <ul class="nav nav-pills nav-stacked" align="center">
-  <li><%= link_to t('views.pages.main.content.user_information.account_details').html_safe, comments_path%></li>
+  <li><%= link_to t('views.pages.main.content.user_information.account_details').html_safe, account_path%></li>
+  <li><%= link_to t('views.pages.main.content.user_information.list_stations').html_safe, stations_path%></li>
 	<% if current_user.privileges == 1 %>
 		<li><%= link_to t('views.pages.main.content.user_information.create_station').html_safe, new_station_path%></li>
 		<li><%= link_to t('views.pages.main.content.user_information.list_comments').html_safe, comments_path%></li> 

@@ -6,7 +6,8 @@ class Comment < ActiveRecord::Base
 	accepts_nested_attributes_for :rating # Permite que se guarden atributos de otros modelos en las vistas del modelo comentario.
 	
 	#validations
-	validates :title, :description, presence: true
+	validates :title, length: { in: 4..40 }, presence: true
+	validates :description, length: { in: 4..140 }, presence: true
 
 	#scopes
 	scope :select_comment, ->{ select "id" }

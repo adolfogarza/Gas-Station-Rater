@@ -16,6 +16,31 @@ class UsersController < ApplicationController
 	  end
 	end
 
+  def edit
+     @user = current_user
+  end
+
+  def update
+    respond_to do |format|
+      if current_user.update(user_params)
+        format.html { redirect_to root_url, notice: 'Los datos de usuario han sido actualizados.' }
+        format.json { render :show, status: :ok, location: @rating }
+      else
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+
+    current_user.destroy
+    respond_to do |format|
+      format.html { redirect_to log_out_url, notice: 'La cuenta ha sido correctamente borrada.' }
+      format.json { head :no_content }
+    end
+  end
+  
 	def user_params
     	params.require(:user).permit(:name, :email, :password, :lastname)
     end

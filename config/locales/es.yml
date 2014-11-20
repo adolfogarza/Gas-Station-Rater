@@ -20,6 +20,7 @@ es:
             create_station: 'Crear Sucursal [admin]'
             list_comments: 'Ver Comentarios [admin]'
             account_details: 'Configuraci&oacute;n de la cuenta'
+            list_stations: 'Listar todas las gasolineras'
     stations:
       show:
         basic_data: 'Informaci&oacute;n B&aacute;sica'
@@ -75,6 +76,15 @@ es:
         email: 'Correo Electr&oacute;nico'
         password: 'Contrase&ntilde;a'
         submit_button: '¡Registrar Cuenta!'
+        update_button: 'Actualizar Cuenta'
+      edit:
+        left_title: 'Opciones'
+        right_title: 'Editar Cuenta'
+        info: 'Para realizar cualquier cambio, modifique el campo que desea editar y presione actualizar.'
+        change_password: 'Cambiar Contrase&ntilde;a'
+        change_email: 'Cambiar Correo Electr&oacute;nico'
+        change_basic: 'Cambiar Informaci&oacute;n B&aacute;sica'
+        delete_account: 'Borrar Cuenta'
     sessions:
       create:
         page_title: 'Iniciar Sesi&oacute;n'
@@ -95,3 +105,17 @@ es:
       edit: 'Editar'
       delete: 'Borrar'
       site_title: 'Gasolina Segura'
+  activerecord:
+    errors:
+      models:
+        station:
+          attributes:
+            legal_name:
+              blank: ': La razon social esta vacia'
+              too_short: ': La razon social es demasiado corta'
+        location:
+          attributes:
+            address:
+              blank: ': El campo de direccion esta vacio'
+              too_short: ': El campo de direccion es demasiado corto'
+              too_long: ': El campo de direccion es demasiado largo'

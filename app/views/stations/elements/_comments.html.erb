@@ -37,7 +37,7 @@
       <% end %>
       <p><center>"<%= station.title %>"</center></p>
       <hr>
-      <p> <center><font color="#2c3e50"><%= station.user.name %> <%=station.user.lastname %></font> <%= t('views.stations.show.user_said').html_safe %><%= station.description %></center> </p>
+      <p> <center><font color="#2c3e50"><%= station.user.name if station.user %> <%=station.user.lastname if station.user %></font> <%= t('views.stations.show.user_said').html_safe %><%= station.description %></center> </p>
       <hr>
       <% if station.user == current_user || current_user.privileges == 1 %>
         <div align="center">

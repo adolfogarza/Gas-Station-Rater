@@ -56,8 +56,7 @@ class CommentsController < ApplicationController
           format.html { redirect_to @station, notice: 'Tu comentario ha sido creado con exito!' }
           format.json { render :show, status: :created, location: @comment }          
         else
-          format.html { render :new }
-          format.json { render json: @comment.errors, status: :unprocessable_entity }
+          format.html { redirect_to @station, notice: 'Tu comentario esta incompleto' }
         end
       end
     end
@@ -112,7 +111,7 @@ class CommentsController < ApplicationController
           @station.save
 
 
-        format.html { redirect_to @comment, notice: 'El comentario ha sido actualizado con exito!' }
+        format.html { redirect_to @comment, notice: 'El comentario ha sido actualizado con exito' }
         format.json { render :show, status: :ok, location: @comment }
         Rating.find_by_id(@current_rating_id).destroy
       else
@@ -144,21 +143,21 @@ class CommentsController < ApplicationController
     @comment.destroy
     Rating.find_by_comment_id(@comment.id).destroy
     respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'El comentario ha sido borrado con exito' }
+      format.html { redirect_to root_url, notice: 'El comentario ha sido borrado.' }
       format.json { head :no_content }
     end
   end
 
   def verify_session
     if current_user.nil?
-      redirect_to log_in_url, :notice => "Debes iniciar sesion"
+      redirect_to log_in_url, :notice => "Debes iniciar sesion."
     end
   end
 
   def correct_user
     if current_user.privileges == 0
       @comment = current_user.comments.find_by(id: params[:id])
-      redirect_to root_url, notice: "No estas autorizado para modificar este comentario!" if @comment.nil?
+      redirect_to root_url, notice: "No estas autorizado para modificar este comentario." if @comment.nil?
     end
   end
 

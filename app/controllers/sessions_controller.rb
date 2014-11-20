@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to root_url, :notice => "Iniciaste sesión correctamente"
     else
-      flash.now.alert = "Los datos ingresados son incorrectos!"
+      flash.now.alert = "Los datos ingresados son incorrectos, verifica tu correo o password."
       render "new"
     end
   end

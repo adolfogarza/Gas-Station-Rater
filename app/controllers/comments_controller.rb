@@ -56,7 +56,7 @@ class CommentsController < ApplicationController
           format.html { redirect_to @station, notice: 'Tu comentario ha sido creado con exito!' }
           format.json { render :show, status: :created, location: @comment }          
         else
-          format.html { redirect_to @station, notice: 'Tu comentario esta incompleto' }
+          format.html { redirect_to @station, notice: 'Tu comentario esta incompleto: no llenaste todos los campos de rating o pasaste el limite de 140 caracteres.' }
         end
       end
     end
@@ -65,7 +65,6 @@ class CommentsController < ApplicationController
   def update
 
     if @comment.station
-
       @station = Station.find_by_id(@comment.station_id)
       unless @station.counter_honesty.nil?
         @station.counter_honesty -= @comment.rating.honesty      

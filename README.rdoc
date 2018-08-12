@@ -1,9 +1,6 @@
-== README
+# Gas Station Rater
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+Rails project that allows users to rate the quality of the service given by gas stations . It allows for user creation, administrators can setup all the nearby gas stations with their relevant information and users can comment and rate the service.
 
 * This rating framework requires rails 4.1.6 and ruby 2.1.2p95.
 
